@@ -12,6 +12,10 @@
     animation: App-logo-float infinite 3s ease-in-out;
   }
 }
+.header{
+  display: block;
+  width: 100vw;
+}
 
 .App-header {
   min-height: 100vh;
