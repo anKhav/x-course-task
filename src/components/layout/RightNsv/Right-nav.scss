@@ -1,0 +1,26 @@
+.right-nav{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  margin-right: 20px;
+  .button{
+    padding: 10px 20px;
+    height: 100%;
+  }
+  .cart{
+    width: 24px;
+    margin-right: 20px;
+  }
+  .user{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+
+    &__icon{
+      width: 24px;
+      margin-right: 20px;
+    }
+    &__name{}
+  }
+}

@@ -1,0 +1,17 @@
+.books{
+  margin-bottom: 50px;
+  &__header{
+    display: flex;
+    justify-content: center;
+  }
+  &__content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pagination{
+    &__button{
+      margin: 10px;
+    }
+  }
+}

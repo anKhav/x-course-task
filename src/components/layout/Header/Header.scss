@@ -1,0 +1,30 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100vw;
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000000;
+  height: 100px;
+  .logo{
+    display: flex;
+    padding: 20px;
+  }
+  &__logo{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    flex: 2;
+  }
+  h1{
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
+  p{
+    text-transform: uppercase;
+  }
+}
