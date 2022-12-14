@@ -1,0 +1,21 @@
+.authorization{
+  height: calc(100vh - 100px);
+  &__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+  }
+  &__form{
+    max-width: 200px;
+    margin-top: 20px;
+  }
+  &__input{
+    margin-bottom: 20px;
+  }
+}
+.avatar{
+  max-width: 160px;
+  max-height: 160px;
+}
