@@ -1,10 +1,10 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react';
 import Header from "../../components/layout/Header/Header";
 import data from '../../data/books.json'
 import SingleBook from "../../components/layout/SingleBook/SingleBook";
 import './Books.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {getBooks} from "../../features/Books/booksSlice";
+import {getBooks, setPagesQuantity} from "../../features/Books/booksSlice";
 import book from "../Book/Book";
 
 const Books = () => {
@@ -12,10 +12,12 @@ const Books = () => {
     const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
         dispatch(getBooks(currentPage))
+        dispatch(setPagesQuantity())
     },[currentPage])
 
     const books = useSelector(state => state.books.books)
     const quantity = useSelector(state => state.books.pageNumbers)
+
 
 
     const paginationHandling = (e) => {
