@@ -12,13 +12,11 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    {/*<BrowserRouter>*/}
-      <HashRouter>
+    <BrowserRouter>
         <Provider store={store}>
             <App />
         </Provider>
-      </HashRouter>
-    {/*</BrowserRouter>*/}
+    </BrowserRouter>
   </React.StrictMode>
 );
 
