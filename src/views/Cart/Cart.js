@@ -6,11 +6,11 @@ import {useSelector} from "react-redux";
 
 const Cart = () => {
     const bookInCart = useSelector(state => state.cartBooks.items)
-    console.log(bookInCart)
+
     return (
         <div className='cart section-outer'>
                 <div className="cart__button">
-                    <Button disabled={!bookInCart.length ? true : false} >Purchase</Button>
+                    <Button disabled={!bookInCart.length} >Purchase</Button>
                 </div>
             <div className="cart__content">
                 {!bookInCart.length ?

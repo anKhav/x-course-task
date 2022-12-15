@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 import notFoundImg from '../../../assest/images/system/imageNotFound.png'
 import Button from "../../buttons/button/Button";
@@ -13,7 +13,7 @@ const SingleBook = ({id, author, price, image, title}) => {
 
     const openSingleBooks = async (e) => {
         e.preventDefault()
-        const selectedBook = await books.find(book => book.id == e.target.id)
+        const selectedBook = await books.find(book => Number(book.id) === Number(e.target.id))
         dispatch(setSingleBook({...selectedBook, quantity:1}))
         navigate(`../book/${selectedBook.id}`)
     }

@@ -11,6 +11,9 @@
   .cart{
     width: 24px;
     margin-right: 20px;
+    &__link{
+      margin-right: 20px;
+    }
   }
   .user{
     display: flex;
