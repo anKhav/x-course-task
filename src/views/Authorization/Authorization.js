@@ -23,7 +23,7 @@ const Authorization = () => {
             <div className='authorization__content section-outer'>
                 <img className='avatar' src={avatar} alt="User avatar"/>
                 <form action="/" className='authorization__form'>
-                    <Input className='authorization__input'/>
+                    <Input className='authorization__input' name={'username'} placeholder='type Username' label/>
                     <Button onClick={(e) => logInHandler(e)} type='submit' className='authorization__button'>Sign In</Button>
                 </form>
             </div>
