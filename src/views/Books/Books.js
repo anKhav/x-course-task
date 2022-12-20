@@ -5,7 +5,7 @@ import SingleBook from "../../components/layout/SingleBook/SingleBook";
 import './Books.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {getBooks, setPagesQuantity} from "../../features/Books/booksSlice";
-import searchIcon from '../../assest/images/system/icons8-search.svg'
+import searchIcon from './../../assest/images/system/icons8-search.svg'
 import Input from "../../components/forms/Input/Input";
 import allBooks from '../../data/books.json'
 
