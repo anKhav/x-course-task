@@ -16,18 +16,20 @@ const booksSlice = createSlice({
     initialState:initial,
     reducers:{
         getBooks: (state,action) => {
-            for(let i=1; i<= Math.ceil(books.length / state.limit); i++){
-                state.pageNumbers.push(i)
-            }
-            state.totalQuantity = makeUniqueArray(state.pageNumbers)
             if (action.payload === 1){
                 state.books = books.filter(book => book.id <= state.limit)
             } else {
                 state.books = books.filter(book =>  book.id <= action.payload * state.limit && book.id > (action.payload - 1) * state.limit)
             }
+        },
+        setPagesQuantity: state => {
+            for(let i=1; i<= Math.ceil(books.length / state.limit); i++){
+                state.pageNumbers.push(i)
+            }
+            state.pageNumbers = makeUniqueArray(state.pageNumbers)
         }
     }
 })
 
-export const {getBooks} = booksSlice.actions
+export const {getBooks, setPagesQuantity} = booksSlice.actions
 export default booksSlice.reducer
