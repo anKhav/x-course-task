@@ -1,0 +1,127 @@
+.single-book{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 110px);
+  padding: 20px;
+
+  &__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    margin-right: 20px;
+  }
+
+  &__img{
+    img{
+      width: 100%;
+    }
+  }
+  &__description{}
+
+  &__content{
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 25%;
+    height: 100%;
+    margin-right: 20px;
+  }
+
+  &__title{
+    margin-bottom: 20px;
+  }
+
+  &__author{
+    margin-bottom: 20px;
+  }
+
+  &__level{
+    margin-bottom: 25px;
+  }
+
+  &__tags{
+    display: flex;
+    margin-bottom: 25px;
+  }
+
+  &__tag{
+    list-style: none;
+  }
+
+  &__form{
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: center;
+    width: 25%;
+    height: 100%;
+
+    .my-button{
+      align-self: flex-end;
+    }
+  }
+
+  &__price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .title{}
+    .value{}
+  }
+
+  &__count{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .title{}
+  }
+
+  &__input{
+    position: relative;
+    width: 70px;
+    height: 40px;
+    border: 1px solid #000;
+    border-right: none;
+    border-radius: 10px;
+
+    input{
+      width: 20px;
+      height: 100%;
+      margin-right: 30px;
+      margin-left: 20px;
+      border: none;
+    }
+
+    button{
+      font-size: 10px;
+      position: absolute;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      padding: 5px;
+      border: 1px solid #000;
+      background: none;
+    }
+
+    .increment{
+      top: 0;
+      border-top-right-radius: 10px;
+    }
+
+    .decrement{
+      bottom: 0;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}

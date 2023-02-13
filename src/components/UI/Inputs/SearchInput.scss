@@ -1,0 +1,22 @@
+.search-input {
+  position: relative;
+  //padding-right: 40px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  height: 100%;
+  padding: 10px 40px 10px 20px;
+
+  img{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 20px;
+    transform: translateY(-50%);
+  }
+
+  .input{
+    //margin: 10px 20px;
+    border: none;
+    height: 100%;
+  }
+}

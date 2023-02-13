@@ -1,0 +1,52 @@
+.nav{
+  display: flex;
+  align-items: center;
+}
+
+.cart__icon{
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+
+  img{
+    width: 100%;
+  }
+}
+
+.avatar{
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border: 1px solid #000;
+  border-radius: 100%;
+}
+
+@media screen and ( max-width: 768px ){
+  .nav {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .my-button{
+    order: 4;
+  }
+
+  .avatar{
+    order: 1;
+    margin-bottom: 20px;
+  }
+
+  .username{
+    order: 2;
+    margin-bottom: 30px;
+  }
+
+  .cart{
+    order: 3;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
