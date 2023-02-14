@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/x-course-task/static/css/main.eebd536b.css",
-    "main.js": "/x-course-task/static/js/main.99b2e6fb.js",
+    "main.css": "/x-course-task/static/css/main.46cf65e3.css",
+    "main.js": "/x-course-task/static/js/main.e7db71e2.js",
     "static/media/imageNotFound.png": "/x-course-task/static/media/imageNotFound.298b98203c3825c61303.png",
     "static/media/shopping-cart-icon.svg": "/x-course-task/static/media/shopping-cart-icon.3124b5b1df69e0fd5a1d161e33888711.svg",
     "index.html": "/x-course-task/index.html",
     "static/media/user-svgrepo-com.svg": "/x-course-task/static/media/user-svgrepo-com.0da86485f899b7af55296a70f2569788.svg",
     "static/media/search-svgrepo-com.svg": "/x-course-task/static/media/search-svgrepo-com.5ca6b0e48c3c1206792e0d6952b52b7f.svg",
-    "main.eebd536b.css.map": "/x-course-task/static/css/main.eebd536b.css.map",
-    "main.99b2e6fb.js.map": "/x-course-task/static/js/main.99b2e6fb.js.map"
+    "main.46cf65e3.css.map": "/x-course-task/static/css/main.46cf65e3.css.map",
+    "main.e7db71e2.js.map": "/x-course-task/static/js/main.e7db71e2.js.map"
   },
   "entrypoints": [
-    "static/css/main.eebd536b.css",
-    "static/js/main.99b2e6fb.js"
+    "static/css/main.46cf65e3.css",
+    "static/js/main.e7db71e2.js"
   ]
 }
