@@ -44,3 +44,30 @@
   }
   &__price{}
 }
+@media (max-width: 768px){
+  .book-card{
+    width: calc((100vw - 80px) / 2);
+    &:not(:nth-child(2n)) {
+      margin-right: 20px;
+    }
+    &:nth-child(2n){
+      margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: 576px){
+  .book-card{
+    width: calc(100vw - 40px);
+    &:not(:nth-child(2n)) {
+      margin-right: 20px;
+    }
+    &:nth-child(odd){
+      margin-right: 0;
+    }
+  }
+
+  .books__header {
+    flex-direction: column;
+  }
+}

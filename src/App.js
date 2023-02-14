@@ -19,12 +19,12 @@ const App = () => {
             <>
                 <BooksProvider>
                     <UserProvider>
-                        <Header title='JS Band Store' authorName='Anton Khavaldzhi'/>
-                        <SpecificBookProvider>
-                            <CartProvider>
+                        <CartProvider>
+                            <Header title='JS Band Store' authorName='Anton Khavaldzhi'/>
+                            <SpecificBookProvider>
                                 <AppRouter/>
-                            </CartProvider>
-                        </SpecificBookProvider>
+                            </SpecificBookProvider>
+                        </CartProvider>
                     </UserProvider>
                 </BooksProvider>
             </>

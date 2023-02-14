@@ -20,7 +20,9 @@
       width: 100%;
     }
   }
-  &__description{}
+  &__description{
+    width: 100vw;
+  }
 
   &__content{
     display: flex;

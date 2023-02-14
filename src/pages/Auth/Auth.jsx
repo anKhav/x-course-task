@@ -7,6 +7,7 @@ import {useCallback, useState} from "react";
 import debounce from 'lodash.debounce'
 import {AuthFormValidator} from '../../validators/AuthFormValidator'
 import {useUser} from "../../features/context/UserContext";
+import {LOGIN} from "../../features/actions";
 
 
 
@@ -20,7 +21,7 @@ const Auth = () => {
     const isDisabled = AuthFormValidator(username)
     const login = async (e) => {
         e.preventDefault()
-        await userDispatch({ type: 'login', payload:{username:username}});
+        await userDispatch({ type: LOGIN, payload:{username:username}});
         navigate('/books')
     }
     const changeHandler = (e) => {

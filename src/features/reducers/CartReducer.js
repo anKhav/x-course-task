@@ -1,9 +1,10 @@
 
 import {addToCart, clearCart} from "../../services/CartService";
+import {ADD__CART} from "../actions";
 
 export function cartReducer(state, action) {
     switch (action.type) {
-        case 'add': {
+        case ADD__CART: {
             if (state.data.length === 0){
                 state.totalAmount = action.book.amount
                 state.totalPrice = action.book.price * action.book.amount

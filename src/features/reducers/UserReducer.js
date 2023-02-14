@@ -1,15 +1,16 @@
 import {deleteUser, setUser} from "../../services/UserService";
 import {deleteSpecificBook} from "../../services/SpecificBookService";
 import {clearCart} from "../../services/CartService";
+import {LOGIN, LOGOUT} from "../actions";
 
 export function userReducer(state, action) {
     switch (action.type) {
-        case 'login': {
+        case LOGIN: {
             setUser(action.payload)
 
             return action.payload
         }
-        case 'logout': {
+        case LOGOUT: {
             deleteSpecificBook()
             clearCart()
             deleteUser()

@@ -32,10 +32,10 @@ const Header = ({title, authorName}) => {
 
     return (
         <header className='header'>
-            <h1>
+            <Link to='/' className='header__logo'>
                 <span>{title}</span> /
                 <span>{authorName}</span>
-            </h1>
+            </Link>
             {
                 Object.keys(user).length !== 0 ? <div>{windowSize.innerWidth > 768 ? <Nav/> : <BurgerMenu/>}</div> : <div></div>
             }

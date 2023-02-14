@@ -4,9 +4,26 @@
 }
 
 .cart__icon{
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   margin-right: 20px;
+  position: relative;
+  z-index: 100;
+  padding: 10px;
+  .amount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    z-index: 1000;
+    color: white;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 
   img{
     width: 100%;
@@ -44,7 +61,7 @@
     margin-bottom: 30px;
   }
 
-  .cart{
+  .cart__icon{
     order: 3;
     margin-right: 0;
     margin-bottom: 30px;

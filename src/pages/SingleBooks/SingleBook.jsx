@@ -13,6 +13,7 @@ import {useLocation} from "react-router-dom";
 import {ThreeDots} from "react-loader-spinner";
 import {addToCart, getCart, setCart} from "../../services/CartService";
 import {useCartContext} from "../../features/context/CartContext";
+import {ADD__CART, INITIAL__SPECIFIC__BOOK} from "../../features/actions";
 
 
 const SingleBook = () => {
@@ -22,8 +23,6 @@ const SingleBook = () => {
     const { books } = useContext(BooksContext);
     const {cart, cartDispatch} = useCartContext()
 
-    // const cart = getCart() || []
-
     const [bookToCart, setBookToCart] = useState({})
 
     const [amount, setAmount] = useState(1)
@@ -32,21 +31,24 @@ const SingleBook = () => {
     }, [amount,book])
 
     const reduceTitle = (title, num = 24) => {
-        if (title.length > num){
-            const arr = title.split('')
-            arr.length = num
-            arr.push('...')
+        if (title) {
+            if (title.length > num){
+                const arr = title.split('')
+                arr.length = num
+                arr.push('...')
 
-            title = arr.join('')
-            return title
-        } else {
-            return title
+                title = arr.join('')
+                return title
+            } else {
+                return title
+            }
         }
+        return
     }
 
     const location = useLocation()
     useEffect(() => {
-        dispatch({type:'INITIAL', id:Number(location.pathname[location.pathname.length - 1]), arr:books})
+        dispatch({type:INITIAL__SPECIFIC__BOOK, id:Number(location.pathname[location.pathname.length - 1]), arr:books})
     }, [books])
 
     const amountHandler = (e) => {
@@ -61,12 +63,11 @@ const SingleBook = () => {
 
     const addToCartHandler = (e) => {
         e.preventDefault()
-        console.log(cart)
-        cartDispatch({type:'add', book:bookToCart})
+        cartDispatch({type:ADD__CART, book:bookToCart})
     }
 
     return (
-        books.length !== 0 && book ?
+        books && book ?
                 <div className="single-book">
                     <div className="single-book__wrapper">
                         <div className="single-book__img">

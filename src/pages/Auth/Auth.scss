@@ -51,3 +51,18 @@
 .section-outer{
   height: 100%;
 }
+@media (max-width: 320px) {
+  .auth{
+    &__avatar{
+      width: 200px;
+      height: 200px;
+    }
+    &__form{
+      width: 100vw;
+      padding: 0 8px;
+    }
+    .input{
+      width: 100%;
+    }
+  }
+}
