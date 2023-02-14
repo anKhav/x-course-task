@@ -50,6 +50,7 @@ const Books = () => {
             setFilteredBooks(books)
         }
     }
+    console.log(filteredBooks.length !== 0);
 
 
     return (

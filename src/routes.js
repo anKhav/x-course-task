@@ -1,5 +1,5 @@
 import {
-    BOOK_ROUTE, BOOKS_ROUTE, CART_ROUTE, LOGIN_ROUTE, HOME_ROUTE, CHECKOUT_ROUTE, REGISTRATION_ROUTE, CABINET
+    BOOK_ROUTE, BOOKS_ROUTE, CART_ROUTE, LOGIN_ROUTE
 } from "./helpers/consts";
 import Books from "./pages/Books/Books";
 import * as React from 'react';

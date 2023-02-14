@@ -7,3 +7,5 @@ export const BOOKS_ROUTE = '/books'
 export const LOGIN_ROUTE = '/'
 export const REGISTRATION_ROUTE = '/registration'
 export const CABINET = '/user'
+
+export const SERVER_URL = 'https://ankhav.github.io/x-course-task/'
