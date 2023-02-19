@@ -1,17 +1,32 @@
-import * as React from 'react';
 import './Dropdown.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import * as events from "events";
 
 
 
 const Dropdown = ({selectedItem, setSelectedItem}) => {
     const [isOpen, setIsOpen] = useState(false)
-    // const [selectedItem, setSelectedItem] = useState('Price')
 
     const dropdownOpenAndCloseTrigger = (e) => {
         e.preventDefault()
         setIsOpen(prevState => !prevState)
     }
+
+    const closeDropdown = (e) => {
+        e.stopPropagation()
+        if (e.target.classList.contains('dropdown__item') || e.target.classList.contains('dropdown__button') || e.target.classList.contains('dropdown') || e.target.classList.contains('dropdown__label')) {
+
+        } else {
+            setIsOpen(false)
+        }
+    }
+
+   useEffect(() => {
+       window.addEventListener('click', closeDropdown)
+       return () => {
+           window.removeEventListener('click', closeDropdown)
+       }
+   }, [])
 
     const selectOption = (e) =>  {
         setSelectedItem(e.target.innerText)
@@ -19,7 +34,7 @@ const Dropdown = ({selectedItem, setSelectedItem}) => {
     }
     return (
         <div className='dropdown'>
-            <label htmlFor='dropdown__button'>{selectedItem}</label>
+            <label className='dropdown__label' htmlFor='dropdown__button'>{selectedItem}</label>
             <button id='dropdown__button' className="dropdown__button" onClick={(e) => dropdownOpenAndCloseTrigger(e)}>
                 &#9662;
             </button>

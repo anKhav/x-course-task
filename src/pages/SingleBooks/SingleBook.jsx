@@ -1,54 +1,39 @@
 import * as React from 'react';
 
-// @ts-ignore
 import img from '../../images/imageNotFound.png'
 
 
 import './SingleBook.scss'
-import MyButton from "../../components/UI/MyButton/MyButton";
-import {useSpecificBookContext} from "../../features/context/SpecificBookContext";
+import {MyButton} from "../../components/UI/MyButton/MyButton";
+import {SpecificBookContext} from "../../features/context/SpecificBookContext";
 import {useContext, useEffect, useState} from "react";
 import {BooksContext} from "../../features/context/BooksContext";
 import {useLocation} from "react-router-dom";
 import {ThreeDots} from "react-loader-spinner";
-import {addToCart, getCart, setCart} from "../../services/CartService";
-import {useCartContext} from "../../features/context/CartContext";
+import {CartContext} from "../../features/context/CartContext";
 import {ADD__CART, INITIAL__SPECIFIC__BOOK} from "../../features/actions";
+import {reduceTitle} from "../../helpers/reduceTitle";
 
 
 const SingleBook = () => {
 
-    const {book} = useSpecificBookContext()
-    const {dispatch} = useSpecificBookContext()
+
+    const {book, specificBookDispatch} = useContext(SpecificBookContext)
     const { books } = useContext(BooksContext);
-    const {cart, cartDispatch} = useCartContext()
+    const {cartDispatch, setState} = useContext(CartContext)
 
     const [bookToCart, setBookToCart] = useState({})
-
     const [amount, setAmount] = useState(1)
+
+
+    const location = useLocation()
+
     useEffect(() => {
         setBookToCart({...book, amount:amount || 1})
     }, [amount,book])
 
-    const reduceTitle = (title, num = 24) => {
-        if (title) {
-            if (title.length > num){
-                const arr = title.split('')
-                arr.length = num
-                arr.push('...')
-
-                title = arr.join('')
-                return title
-            } else {
-                return title
-            }
-        }
-        return
-    }
-
-    const location = useLocation()
     useEffect(() => {
-        dispatch({type:INITIAL__SPECIFIC__BOOK, id:Number(location.pathname[location.pathname.length - 1]), arr:books})
+        specificBookDispatch({type:INITIAL__SPECIFIC__BOOK, id:Number(location.pathname[location.pathname.length - 1]), arr:books})
     }, [books])
 
     const amountHandler = (e) => {
@@ -64,6 +49,8 @@ const SingleBook = () => {
     const addToCartHandler = (e) => {
         e.preventDefault()
         cartDispatch({type:ADD__CART, book:bookToCart})
+        setBookToCart({...bookToCart, amount:amount})
+        setState(prev => !prev)
     }
 
     return (
@@ -73,55 +60,59 @@ const SingleBook = () => {
                         <div className="single-book__img">
                             <img src={book.image || img} alt="Book image"/>
                         </div>
-                        <p className="single-book__description">
-                            {book.description}
-                        </p>
-                    </div>
-                    <div className="single-book__content">
-                        <h2 className="single-book__title">{reduceTitle(book.title)}</h2>
-                        <h3 className="single-book__author">{book.author}</h3>
-                        <h4 className="single-book__level">
-                            Book level
-                        </h4>
-                        <ul className="single-book__tags">
-                            <li className="single-book__tag">Tag</li>
-                            <li className="single-book__tag">Tag</li>
-                            <li className="single-book__tag">Tag</li>
-                        </ul>
-                    </div>
-                    <form className="single-book__form">
-                        <div className="single-book__price">
-                            <span className="title">Price</span>
-                            <span className="value">{book.price}$</span>
-                        </div>
-                        <div className="single-book__count">
-                            <label className="title">Count</label>
-                            <div className="single-book__input">
-                                <input value={amount} onChange={e => amountHandler(e)} max='64' min='1' type="number" onKeyPress={(event) => {
-                                    if (!/[0-9]/.test(event.key)) {
-                                        event.preventDefault();
-                                    }
-                                }}/>
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        setAmount(prevState => prevState - 1 )
-                                        }
-                                    }
-                                    className='decrement'>&#9660;</button>
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        setAmount(prevState => prevState + 1 )
-                                        }
-                                    }
-                                    className='increment'>&#9650;</button>
+                        <div className="single-book__container">
+                            <div className="single-book__content">
+                                <h2 className="single-book__title">{reduceTitle(book.title)}</h2>
+                                <h3 className="single-book__author">{book.author}</h3>
+                                <h4 className="single-book__level">
+                                    Book level
+                                </h4>
+                                <ul className="single-book__tags">
+                                    <li className="single-book__tag">Tag</li>
+                                    <li className="single-book__tag">Tag</li>
+                                    <li className="single-book__tag">Tag</li>
+                                </ul>
                             </div>
+                            <form className="single-book__form">
+                                <div className="single-book__price">
+                                    <span className="title">Price</span>
+                                    <span className="value">{book.price}$</span>
+                                </div>
+                                <div className="single-book__count">
+                                    <label className="title">Count</label>
+                                    <div className="single-book__input">
+                                        <input value={amount} onChange={e => amountHandler(e)} max='64' min='1' type="number" onKeyPress={(event) => {
+                                            if (!/[0-9]/.test(event.key)) {
+                                                event.preventDefault();
+                                            }
+                                        }}/>
+                                        <button
+                                            disabled={amount <= 1}
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setAmount(prevState => prevState - 1 )
+                                            }
+                                            }
+                                            className='decrement'>&#9660;</button>
+                                        <button
+                                            disabled={amount >= 42}
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setAmount(prevState => prevState + 1 )
+                                            }
+                                            }
+                                            className='increment'>&#9650;</button>
+                                    </div>
+                                </div>
+                                <MyButton
+                                    onClick={(e) => addToCartHandler(e)}
+                                >Add to Cart</MyButton>
+                            </form>
                         </div>
-                        <MyButton
-                            onClick={(e) => addToCartHandler(e)}
-                        >Add to Cart</MyButton>
-                    </form>
+                    </div>
+                    <p className="single-book__description">
+                        {book.description}
+                    </p>
                 </div>
                 :
                 <div className="loader">

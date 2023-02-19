@@ -17,6 +17,10 @@
   .input{
     border: none;
     height: 100%;
+    &:focus-within .search-input{
+      border: 1px solid lightgrey;
+      background-color: red;
+    }
   }
 }
 

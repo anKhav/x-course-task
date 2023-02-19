@@ -33,16 +33,24 @@
       height: 100%;
     }
   }
-  &__title{}
-  &__author{}
+  &__title{
+    margin-bottom: 10px;
+  }
+  &__author{
+    margin-bottom: 10px;
+  }
 
   &__footer{
     display: flex;
     justify-content: space-between;
     align-content: center;
     width: 100%;
+    margin-top: 20px;
   }
-  &__price{}
+  &__price{
+    display: flex;
+    align-items: center;
+  }
 }
 @media (max-width: 768px){
   .book-card{

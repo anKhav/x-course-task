@@ -22,7 +22,9 @@ input::-webkit-inner-spin-button {
 /**
  * Remove the margin in all browsers.
  */
-
+*{
+  border: none;
+}
 body {
   margin: 0;
 }

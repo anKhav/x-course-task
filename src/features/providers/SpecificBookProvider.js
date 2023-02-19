@@ -4,11 +4,12 @@ import {SpecificBookContext} from "../context/SpecificBookContext";
 
 
 const SpecificBookProvider = props => {
-    const [book, dispatch] = useReducer(reducer, []);
+    const [book, specificBookDispatch] = useReducer(reducer, []);
+    const value = {book, specificBookDispatch}
 
 
     return (
-        <SpecificBookContext.Provider value={{ book, dispatch }}>
+        <SpecificBookContext.Provider value={value}>
             {props.children}
         </SpecificBookContext.Provider>
     );

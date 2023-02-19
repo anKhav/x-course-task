@@ -1,12 +1,12 @@
-import * as React from 'react';
-import MyButton from "../../components/UI/MyButton/MyButton";
+
+import {MyButton} from "../../components/UI/MyButton/MyButton";
 import img from '../../images/user-svgrepo-com.svg'
 import './Auth.scss'
 import {useNavigate} from "react-router-dom";
-import {useCallback, useState} from "react";
+import {useCallback, useContext, useState} from "react";
 import debounce from 'lodash.debounce'
 import {AuthFormValidator} from '../../validators/AuthFormValidator'
-import {useUser} from "../../features/context/UserContext";
+import {UserContext} from "../../features/context/UserContext";
 import {LOGIN} from "../../features/actions";
 
 
@@ -14,7 +14,7 @@ import {LOGIN} from "../../features/actions";
 
 const Auth = () => {
     const [username, setUsername] = useState('')
-    const {userDispatch} = useUser()
+    const {userDispatch} = useContext(UserContext)
 
 
     const navigate = useNavigate()
@@ -31,6 +31,7 @@ const Auth = () => {
     const debouncedChangeHandler = useCallback(
         debounce(changeHandler, 500)
         , [isDisabled]);
+
     return (
         <section className='section-outer'>
             <div className="section-inner auth">
@@ -44,12 +45,10 @@ const Auth = () => {
                         type="text"
                         id='username'
                         placeholder='type Username'
-                        // value={username}
                         onChange={debouncedChangeHandler}
                     />
                     <MyButton
                         disabled={isDisabled}
-                        // disabled={true}
                         className='auth__button'
                         onClick={(e) => login(e)}
                     >

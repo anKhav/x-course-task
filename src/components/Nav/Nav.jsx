@@ -1,42 +1,31 @@
-import * as React from 'react';
-import MyButton from "../UI/MyButton/MyButton";
+
+import {MyButton} from "../UI/MyButton/MyButton";
 import img from '../../images/shopping-cart-icon.svg'
 import './Nav.scss'
 import {CART_ROUTE} from "../../helpers/consts";
 import {Link, useNavigate} from "react-router-dom";
-import {useUser} from "../../features/context/UserContext";
-import {LOGOUT} from "../../features/actions";
-import {useCartContext} from "../../features/context/CartContext";
-import {useEffect, useState} from "react";
+import {UserContext} from "../../features/context/UserContext";
+import {CLEAR__CART, LOGOUT} from "../../features/actions";
+import {CartContext} from "../../features/context/CartContext";
+import {useContext, useEffect, useState} from "react";
+import CartIcon from "./CartIcon/CartIcon";
 
 const Nav = () => {
-    const {cart} = useCartContext()
-    console.log(cart);
+    const {user:{username}, userDispatch} = useContext(UserContext)
+    const {cartDispatch} = useContext(CartContext)
 
-    const [amount, setAmount] = useState(cart)
-    useEffect(() => {
-        setAmount(cart.totalAmount)
-    }, [])
-
-    const {user:{username}, userDispatch} = useUser()
     const navigate = useNavigate()
 
     const logout = async (e) => {
         e.preventDefault()
         await userDispatch({type: LOGOUT})
+        await cartDispatch({type:CLEAR__CART})
         navigate('/')
     }
 
     return (
         <nav className='nav'>
-            <Link to={CART_ROUTE} className='cart__icon'>
-                {
-                    amount !== 0 ?
-                        <div className="amount">{cart.totalAmount}</div> :
-                        <div></div>
-                }
-                <img src={img} alt="Cart icon"/>
-            </Link>
+            <CartIcon/>
             <MyButton onClick={(e) => logout(e)}>
                 Sign-Out
             </MyButton>

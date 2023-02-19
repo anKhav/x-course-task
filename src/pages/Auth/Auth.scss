@@ -9,6 +9,10 @@
   }
   .input{
     width: 200px;
+    &:focus{
+      border-color: black;
+      box-shadow: inset 0 0 1px 0 #000000;
+    }
   }
 
   &__avatar{
@@ -38,7 +42,7 @@
     input{
       margin-bottom: 20px;
       padding: 10px 20px;
-      border: 1px solid #000;
+      border: 1px solid #797979;
       border-radius: 10px;
     }
 

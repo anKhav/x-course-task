@@ -1,12 +1,6 @@
-// actions
+
 import {setSpecificBook} from "../../services/SpecificBookService";
 import {INITIAL__SPECIFIC__BOOK} from "../actions";
-
-
-
-
-
-
 
 export const reducer = (state, action) => {
     switch (action.type) {

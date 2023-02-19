@@ -1,14 +1,14 @@
-import * as React from 'react';
+
 import {ThreeDots} from 'react-loader-spinner'
-import img from '../../images/imageNotFound.png'
 import BookCard from "../../layouts/BookCard/BookCard";
 
-import './Books.scss'
 import SearchInput from "../../components/UI/Inputs/SearchInput";
 import Dropdown from "../../components/UI/Inputs/Dropdown";
-import {createContext, useContext, useEffect, useReducer, useState} from "react";
-import {BoContext} from "../../App";
+import {useContext, useEffect, useState} from "react";
 import {BooksContext} from "../../features/context/BooksContext";
+import {filterBooksByPrice} from "../../helpers/filterBooks";
+
+import './Books.scss'
 
 
 
@@ -34,23 +34,10 @@ const Books = () => {
     }, [keyword])
 
     useEffect(() => {
-        filterBooks()
+        filterBooksByPrice(selectedItem, books, setFilteredBooks)
         setKeyword('')
     }, [selectedItem])
 
-
-    const filterBooks = () => {
-        if (selectedItem === '0 < Price < 15') {
-            setFilteredBooks(books.filter(({price}) => price > 0 && price < 15))
-        } else if (selectedItem === '15 < Price < 30') {
-            setFilteredBooks(books.filter(({price}) => price > 15 && price < 30))
-        } else if (selectedItem === 'Price > 30') {
-            setFilteredBooks(books.filter(({price}) => price > 30))
-        } else {
-            setFilteredBooks(books)
-        }
-    }
-    console.log(filteredBooks.length !== 0);
 
 
     return (

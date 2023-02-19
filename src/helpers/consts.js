@@ -9,6 +9,6 @@ export const REGISTRATION_ROUTE = '/registration'
 export const CABINET = '/user'
 
 
-// export const SERVER_URL = 'http:/localhost:3000/'
-export const SERVER_URL = 'https://anKhav.github.io/x-course-task/'
+export const SERVER_URL = 'http:/localhost:3000/x-course-task/'
+// export const SERVER_URL = 'https://anKhav.github.io/x-course-task/'
 

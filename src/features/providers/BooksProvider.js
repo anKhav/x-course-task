@@ -6,17 +6,18 @@ import {fetchBooks} from "../actions";
 
 
 const BooksProvider = props => {
-    const [books, dispatch] = useReducer(booksReducer, []);
+    const [books, booksDispatch] = useReducer(booksReducer, []);
+    const value = {books, booksDispatch}
 
     useEffect(() => {
         fetch('books.json')
             .then(response => response.json())
             .then(res => res.books)
-            .then(data => dispatch(fetchBooks(data)));
+            .then(data => booksDispatch(fetchBooks(data)));
     }, []);
 
     return (
-        <BooksContext.Provider value={{ books, dispatch }}>
+        <BooksContext.Provider value={value}>
             {props.children}
         </BooksContext.Provider>
     );

@@ -5,6 +5,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  &__wrapper{
+    width: 100%;
+  }
   &__header{
     width: 100%;
     display: flex;
@@ -20,16 +23,34 @@
     .book{
       padding: 20px;
       width: 100%;
-      border: 1px solid black;
+      border: 1px solid rgb(147, 147, 147);
+      border-radius: 2px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin: 20px;
+      transition: .2s;
+      &:hover{
+        border-color: black;
+        transition: .2s;
+        & .book__name{
+          color: rgb(0, 0, 0);
+          transition: .2s;
+        }
+      }
       &__name{
         width: 20%;
+        color: rgb(147, 147, 147);
+        text-decoration: none;
+        transition: .2s;
+        margin-right: 20px;
+        &:hover{
+          cursor: pointer;
+        }
       }
       &__count{
         width: 20%;
+        margin-right: 20px;
       }
       &__total-price{
         width: 60%;
@@ -43,5 +64,10 @@
     justify-content: flex-end;
     width: 100%;
   }
-  &__total-price{}
+  &__total-price{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
 }

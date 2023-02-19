@@ -1,6 +1,4 @@
-import * as React from 'react';
 import './SearchInput.scss'
-// @ts-ignore
 import img from '../../../images/search-svgrepo-com.svg'
 
 

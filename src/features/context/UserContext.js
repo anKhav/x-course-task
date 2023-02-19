@@ -1,15 +1,7 @@
-import {createContext, useContext} from "react";
+import {createContext} from "react";
 
 const UserContext = createContext(undefined)
 
 
 
-function useUser() {
-    const context = useContext(UserContext)
-    if (context === undefined) {
-        throw new Error('useUser must be used within a UserProvider')
-    }
-    return context
-}
-
-export { UserContext, useUser }
+export { UserContext }
