@@ -6,7 +6,6 @@ export function cartReducer(state, action) {
     switch (action.type) {
 
         case ADD__CART: {
-            console.log(state)
                 if (state.data.length === 0){
                     state.totalAmount = action.book.amount
                     state.totalPrice = action.book.price * action.book.amount
@@ -19,12 +18,9 @@ export function cartReducer(state, action) {
                     })
                     if(itemIndex >= 0){
                         console.log(state.data[itemIndex].amount);
-                        console.log(action.book.amount);
-                        console.log(state);
                         state.data[itemIndex].amount += action.book.amount
                     } else {
                         const tempProduct = {...action.book}
-                        console.log(tempProduct)
                         state.data.push(tempProduct)
                     }
                     state.totalAmount = state.data.reduce((acc,book) => {
@@ -48,7 +44,6 @@ export function cartReducer(state, action) {
                 totalPrice:0,
                 data:[]
             }
-            console.log(state)
             return state
         }
         default: {

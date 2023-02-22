@@ -1,7 +1,6 @@
 import React, { useReducer, useEffect } from "react";
-import { booksReducer, fetchInitial, addTodo } from "../reducers/BooksReducer";
+import { booksReducer} from "../reducers/BooksReducer";
 import {BooksContext} from "../context/BooksContext";
-import {SERVER_URL} from "../../helpers/consts";
 import {fetchBooks} from "../actions";
 
 
@@ -10,7 +9,7 @@ const BooksProvider = props => {
     const value = {books, booksDispatch}
 
     useEffect(() => {
-        fetch('books.json')
+        fetch('/books.json')
             .then(response => response.json())
             .then(res => res.books)
             .then(data => booksDispatch(fetchBooks(data)));

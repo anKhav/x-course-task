@@ -3,19 +3,17 @@ import {MyButton} from "../../components/UI/MyButton/MyButton";
 
 import './Cart.scss'
 import {CartContext} from "../../features/context/CartContext";
-import {clearCart} from "../../services/CartService";
-import {ADD__CART, CLEAR__CART} from "../../features/actions";
+import {CLEAR__CART} from "../../features/actions";
 import {ThreeDots} from "react-loader-spinner";
 import {Link} from "react-router-dom";
 
 const Cart = () => {
     const {cart:{data, totalPrice}, cartDispatch} = useContext(CartContext)
 
-    const [books, setBooks] = useState(data )
+    const [books, setBooks] = useState(data)
 
     useEffect(() => {
         setBooks(data)
-        console.log(books)
     }, [data])
 
     const purchaseHandler = (e) => {

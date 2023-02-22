@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {CART_ROUTE} from "../../../helpers/consts";
+import {CART_ROUTE} from "../../../utils/consts";
 import img from "../../../images/shopping-cart-icon.svg";
 import {Link} from "react-router-dom";
 import {CartContext} from "../../../features/context/CartContext";

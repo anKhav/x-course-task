@@ -8,49 +8,56 @@ import {MyButton} from "../../components/UI/MyButton/MyButton";
 import {SpecificBookContext} from "../../features/context/SpecificBookContext";
 import {useContext, useEffect, useState} from "react";
 import {BooksContext} from "../../features/context/BooksContext";
-import {useLocation} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {ThreeDots} from "react-loader-spinner";
 import {CartContext} from "../../features/context/CartContext";
 import {ADD__CART, INITIAL__SPECIFIC__BOOK} from "../../features/actions";
-import {reduceTitle} from "../../helpers/reduceTitle";
+import {reduceTitle} from "../../utils/reduceTitle";
 
 
 const SingleBook = () => {
 
 
     const {book, specificBookDispatch} = useContext(SpecificBookContext)
+    const {id} = useParams()
     const { books } = useContext(BooksContext);
     const {cartDispatch, setState} = useContext(CartContext)
+    const {cart:{totalAmount}} = useContext(CartContext);
 
     const [bookToCart, setBookToCart] = useState({})
     const [amount, setAmount] = useState(1)
+    const [error, setError] = useState(false)
 
 
-    const location = useLocation()
+    useEffect(() => {
+    }, [totalAmount, amount])
 
     useEffect(() => {
         setBookToCart({...book, amount:amount || 1})
-    }, [amount,book])
+    }, [amount,book, totalAmount])
 
     useEffect(() => {
-        specificBookDispatch({type:INITIAL__SPECIFIC__BOOK, id:Number(location.pathname[location.pathname.length - 1]), arr:books})
-    }, [books])
+        specificBookDispatch({type:INITIAL__SPECIFIC__BOOK, id:Number(id), arr:books})
+    }, [books,id])
 
     const amountHandler = (e) => {
         if (Number(e.target.value) > 42) {
             setAmount(42)
         } else if (Number(e.target.value) === 0) {
             setAmount('')
-        } else {
-            setAmount(e.target.value)
+        } else {setAmount(e.target.value)
         }
     }
-
     const addToCartHandler = (e) => {
         e.preventDefault()
-        cartDispatch({type:ADD__CART, book:bookToCart})
-        setBookToCart({...bookToCart, amount:amount})
-        setState(prev => !prev)
+        if (totalAmount < 120 && bookToCart.amount + totalAmount < 120){
+            cartDispatch({type:ADD__CART, book:bookToCart})
+            setBookToCart({...bookToCart, amount:amount})
+            setState(prev => !prev)
+            setError(false)
+        } else {
+            setError(true)
+        }
     }
 
     return (
@@ -104,7 +111,11 @@ const SingleBook = () => {
                                             className='increment'>&#9650;</button>
                                     </div>
                                 </div>
+                                {
+                                    error && <div>You cannot buy more books! The limit is 120 pcs.</div>
+                                }
                                 <MyButton
+                                    disabled={error}
                                     onClick={(e) => addToCartHandler(e)}
                                 >Add to Cart</MyButton>
                             </form>

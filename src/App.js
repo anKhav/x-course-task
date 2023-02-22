@@ -3,15 +3,13 @@ import * as React from 'react';
 
 import './main.css'
 import AppRouter from "./AppRouter";
-import {createContext} from "react";
 import Header from "./layouts/Header/Header";
 import BooksProvider from "./features/providers/BooksProvider";
 import UserProvider from "./features/providers/UserProvider";
 import SpecificBookProvider from "./features/providers/SpecificBookProvider";
 import CartProvider from "./features/providers/CartProvider";
+import Footer from "./layouts/Footer/Footer";
 
-export const isLoginContext = React.createContext({})
-export const BoContext = createContext(null)
 
 const App = () => {
 
@@ -22,8 +20,11 @@ const App = () => {
                         <CartProvider>
                             <Header title='JS Band Store' authorName='Anton Khavaldzhi'/>
                             <SpecificBookProvider>
-                                <AppRouter/>
+                                <main className='main'>
+                                    <AppRouter/>
+                                </main>
                             </SpecificBookProvider>
+                            <Footer/>
                         </CartProvider>
                     </UserProvider>
                 </BooksProvider>

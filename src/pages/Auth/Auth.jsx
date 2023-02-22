@@ -8,6 +8,8 @@ import debounce from 'lodash.debounce'
 import {AuthFormValidator} from '../../validators/AuthFormValidator'
 import {UserContext} from "../../features/context/UserContext";
 import {LOGIN} from "../../features/actions";
+import {hasWhiteSpace} from "../../utils/hasWhiteSpace";
+import {BOOKS_ROUTE, DEFAULT_SEARCH_QUERY} from "../../utils/consts";
 
 
 
@@ -15,15 +17,24 @@ import {LOGIN} from "../../features/actions";
 const Auth = () => {
     const [username, setUsername] = useState('')
     const {userDispatch} = useContext(UserContext)
+    const [error, setError] = useState(false)
 
 
     const navigate = useNavigate()
     const isDisabled = AuthFormValidator(username)
     const login = async (e) => {
         e.preventDefault()
-        await userDispatch({ type: LOGIN, payload:{username:username}});
-        navigate('/books')
+        const isNotCorrectUsername = hasWhiteSpace(username)
+        setError(isNotCorrectUsername)
+        if (!isNotCorrectUsername) {
+            await userDispatch({ type: LOGIN, payload:{username:username}});
+            navigate({
+                pathname:BOOKS_ROUTE,
+                search:DEFAULT_SEARCH_QUERY
+            })
+        }
     }
+
     const changeHandler = (e) => {
         setUsername(e.target.value)
     }
@@ -47,6 +58,7 @@ const Auth = () => {
                         placeholder='type Username'
                         onChange={debouncedChangeHandler}
                     />
+                    {error && <div className='not-allowed'>Username will not allow a space</div>}
                     <MyButton
                         disabled={isDisabled}
                         className='auth__button'

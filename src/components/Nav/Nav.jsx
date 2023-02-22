@@ -1,14 +1,13 @@
 
 import {MyButton} from "../UI/MyButton/MyButton";
-import img from '../../images/shopping-cart-icon.svg'
 import './Nav.scss'
-import {CART_ROUTE} from "../../helpers/consts";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../features/context/UserContext";
 import {CLEAR__CART, LOGOUT} from "../../features/actions";
 import {CartContext} from "../../features/context/CartContext";
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import CartIcon from "./CartIcon/CartIcon";
+import {INDEX_ROUTE} from "../../utils/consts";
 
 const Nav = () => {
     const {user:{username}, userDispatch} = useContext(UserContext)
@@ -20,7 +19,7 @@ const Nav = () => {
         e.preventDefault()
         await userDispatch({type: LOGOUT})
         await cartDispatch({type:CLEAR__CART})
-        navigate('/')
+        navigate(INDEX_ROUTE)
     }
 
     return (
