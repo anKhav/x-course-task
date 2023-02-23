@@ -9,7 +9,7 @@ const BooksProvider = props => {
     const value = {books, booksDispatch}
 
     useEffect(() => {
-        fetch('/x-course-task/books.json')
+        fetch('http://localhost:3000/books.json')
             .then(response => response.json())
             .then(res => res.books)
             .then(data => booksDispatch(fetchBooks(data)));

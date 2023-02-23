@@ -66,6 +66,17 @@ const Books = () => {
     }, [selectedItem])
 
 
+    const beforeNeighbours = pageAmount.filter((num) => num < currentPage).slice(-2)
+    const afterNeighbours = pageAmount.filter((num) => num > currentPage).slice(0,2)
+    let resArray = []
+    if (pageAmount.length > 10 || innerWidth >= 768){
+        beforeNeighbours.length !==0 && resArray.push(...beforeNeighbours)
+        resArray.push(currentPage)
+        resArray.push(...afterNeighbours)
+    } else {
+        resArray = pageAmount
+    }
+        console.log(resArray);
 
     return (
             <div className="books">
@@ -74,7 +85,7 @@ const Books = () => {
                     <Dropdown selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
                 </div>
                 {
-                    filteredBooks.length !== 0  ?
+                    filteredBooks && filteredBooks.length !== 0  ?
                         <div className="books__content">
                             {
                                 filteredBooks.map((book) =>
@@ -93,12 +104,14 @@ const Books = () => {
                             {
                                 pageAmount.length !== 0 && <div className="pagination">
                                     {
-                                        pageAmount.map(page => {
-                                           return <button
+                                        pageAmount.map((page,i) => {
+
+                                            return <button
                                                 key={page}
                                                 data-page={page}
                                                 className={currentPage === page ? 'pagination__button pagination__button--active' : 'pagination__button'}
                                                onClick={(e) => {
+
                                                     console.log(typeof page)
                                                     console.log(typeof currentPage)
                                                     e.preventDefault()
@@ -111,6 +124,7 @@ const Books = () => {
                                                     setSearchParams(`offset=${(Number(e.target.innerText) -1) * limit}&limit=${limit}`)
                                                 }}
                                                 >{page}</button>
+
                                         })
                                     }
                                 </div>
