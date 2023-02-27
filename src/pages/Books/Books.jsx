@@ -9,8 +9,7 @@ import {BooksContext} from "../../features/context/BooksContext";
 import {filterBooksByPrice} from "../../utils/filterBooks";
 
 import './Books.scss'
-import {INITIAL__BOOKS} from "../../features/actions";
-import {middleware} from "../../utils/middleware";
+
 import {getBooks} from "../../services/booksService";
 import {reduceTitle} from "../../utils/reduceTitle";
 
