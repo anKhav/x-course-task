@@ -1,79 +1,85 @@
 
 import {ThreeDots} from 'react-loader-spinner'
-import BookCard from "../../layouts/BookCard/BookCard";
+import BookCard from "../../layouts/BookCard/BookCard"
 
-import SearchInput from "../../components/UI/Inputs/SearchInput";
-import Dropdown from "../../components/UI/Inputs/Dropdown";
-import {useContext, useEffect, useState} from "react";
-import {BooksContext} from "../../features/context/BooksContext";
-import {filterBooksByPrice} from "../../utils/filterBooks";
+import SearchInput from "../../components/UI/Inputs/SearchInput"
+import Dropdown from "../../components/UI/Inputs/Dropdown"
+import {useContext, useEffect, useState} from "react"
+import {BooksContext} from "../../features/context/BooksContext"
 
 import './Books.scss'
 
-import {getBooks} from "../../services/booksService";
-import {reduceTitle} from "../../utils/reduceTitle";
+import {getBooks} from "../../services/booksService"
+import {reduceTitle} from "../../utils/reduceTitle"
 
 
 
 
 const Books = () => {
-    const { books } = useContext(BooksContext);
-    console.log(books)
-    const { booksDispatch } = useContext(BooksContext);
-
-    const [filteredBooks, setFilteredBooks] = useState([])
-    const [selectedItem, setSelectedItem] = useState('Price')
-
-
+    const { books, booksDispatch } = useContext(BooksContext)
     const [keyword, setKeyword] = useState('')
-
-    useEffect(() =>{
-        const res =  getBooks(booksDispatch)
-    } , []);
-
+    const [searchResults, setSearchResults] = useState([])
+    const [selectedPrice, setSelectedPrice] = useState('')
+    const [filteredBooks, setFilteredBooks] = useState([])
+    const searchHandler = (e) => {
+        setKeyword(e.target.value)
+    }
+    useEffect(() => {
+            const res =  getBooks(booksDispatch)
+    } , [])
 
     useEffect(() => {
+        setSearchResults(books)
         setFilteredBooks(books)
     }, [books])
 
     useEffect(() => {
-        const searched = books.filter((book) => {
-            return book.title.toLowerCase().match(keyword.toLowerCase());
-        });
+        const results = filteredBooks.filter((book) =>
+            book.title.toLowerCase().includes(keyword.toLowerCase())
+        )
+        setSearchResults(results)
+    }, [keyword, filteredBooks])
 
-        setFilteredBooks(searched)
-        setSelectedItem('Price')
-    }, [keyword])
-
-
-
-    useEffect(() => {
-        filterBooksByPrice(selectedItem, books, setFilteredBooks)
-        setKeyword('')
-    }, [selectedItem])
+    const priceHandler = (e) => {
+        setSelectedPrice(e.target.value)
+        if (e.target.value === '0-15'){
+            setFilteredBooks(books.filter(({price}) => price <= 15))
+        } else if (e.target.value === '15-30'){
+            setFilteredBooks(books.filter(({price}) => price >= 15 && price <= 30))
+        } else if (e.target.value === '30+'){
+            setFilteredBooks(books.filter(({price}) => price >= 30))
+        } else {
+            setFilteredBooks(books)
+        }
+    }
 
     return (
             <div className="books">
                 <div className="books__header">
-                    <SearchInput value={keyword} onChange={(e) => setKeyword(e.target.value)}/>
-                    <Dropdown selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
+                    <SearchInput value={keyword} onChange={searchHandler}/>
+                    <Dropdown value={selectedPrice} onChange={priceHandler}/>
                 </div>
                 {
-                    filteredBooks && filteredBooks.length !== 0  ?
+                    filteredBooks.length !== 0 ?
                         <div className="books__content">
                             {
-                                filteredBooks.map((book) =>
-                                    {
-                                        return <BookCard
-                                            key={book.id}
-                                            id={book.id}
-                                            price={book.price}
-                                            author={book.author}
-                                            img={book.image}
-                                            title={reduceTitle(book.title)}
-                                        />
-                                    }
-                                )
+                                searchResults.length === 0 ?
+                                    <p className='books__content--not-found'>
+                                        Not found
+                                    </p>
+                                    :
+                                    searchResults.map((book) =>
+                                        {
+                                            return <BookCard
+                                                key={book.id}
+                                                id={book.id}
+                                                price={book.price}
+                                                author={book.author}
+                                                img={book.image}
+                                                title={reduceTitle(book.title)}
+                                            />
+                                        }
+                                    )
                             }
                         </div>
                         :
@@ -95,4 +101,4 @@ const Books = () => {
     );
 };
 
-export default Books;
+export default Books

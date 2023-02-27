@@ -12,7 +12,6 @@ import {useParams} from "react-router-dom";
 import {ThreeDots} from "react-loader-spinner";
 import {CartContext} from "../../features/context/CartContext";
 import {ADD__CART, INITIAL__BOOKS, INITIAL__SPECIFIC__BOOK} from "../../features/actions";
-import {reduceTitle} from "../../utils/reduceTitle";
 
 
 const SingleBook = () => {
@@ -23,13 +22,12 @@ const SingleBook = () => {
     const { books, booksDispatch } = useContext(BooksContext);
     const {cartDispatch, setState} = useContext(CartContext)
     const {cart:{totalAmount, error}} = useContext(CartContext);
-    // const {cart:{error}} = useContext(CartContext);
     const [isError, setIsError] = useState(false)
 
     const [bookToCart, setBookToCart] = useState({})
     const [amount, setAmount] = useState(1)
     useEffect(() => {
-        fetch('http://localhost:3000/books.json')
+        fetch('books.json')
             .then(response => response.json())
             .then(res => res.books)
             .then(data => booksDispatch({type:INITIAL__BOOKS, payload:data}));
