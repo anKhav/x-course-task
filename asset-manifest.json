@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/x-course-task/static/css/main.e2f06879.css",
-    "main.js": "/x-course-task/static/js/main.20d29288.js",
+    "main.js": "/x-course-task/static/js/main.877bcd32.js",
     "static/media/imageNotFound.png": "/x-course-task/static/media/imageNotFound.298b98203c3825c61303.png",
     "static/media/shopping-cart-icon.svg": "/x-course-task/static/media/shopping-cart-icon.3124b5b1df69e0fd5a1d161e33888711.svg",
     "static/media/user-svgrepo-com.svg": "/x-course-task/static/media/user-svgrepo-com.0da86485f899b7af55296a70f2569788.svg",
     "index.html": "/x-course-task/index.html",
     "static/media/search-svgrepo-com.svg": "/x-course-task/static/media/search-svgrepo-com.5ca6b0e48c3c1206792e0d6952b52b7f.svg",
     "main.e2f06879.css.map": "/x-course-task/static/css/main.e2f06879.css.map",
-    "main.20d29288.js.map": "/x-course-task/static/js/main.20d29288.js.map"
+    "main.877bcd32.js.map": "/x-course-task/static/js/main.877bcd32.js.map"
   },
   "entrypoints": [
     "static/css/main.e2f06879.css",
-    "static/js/main.20d29288.js"
+    "static/js/main.877bcd32.js"
   ]
 }
