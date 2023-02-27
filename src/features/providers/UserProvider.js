@@ -2,6 +2,7 @@ import {useReducer} from "react";
 import {UserContext} from "../context/UserContext";
 import {userReducer} from "../reducers/UserReducer";
 import {getUser} from "../../services/UserService";
+import {LOGIN} from "../actions";
 
 const initialState = getUser() || {};
 const UserProvider = ({children}) => {

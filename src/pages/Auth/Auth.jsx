@@ -9,7 +9,7 @@ import {AuthFormValidator} from '../../validators/AuthFormValidator'
 import {UserContext} from "../../features/context/UserContext";
 import {LOGIN} from "../../features/actions";
 import {hasWhiteSpace} from "../../utils/hasWhiteSpace";
-import {BOOKS_ROUTE, DEFAULT_SEARCH_QUERY} from "../../utils/consts";
+import {BOOKS_ROUTE} from "../../utils/consts";
 
 
 
@@ -30,7 +30,6 @@ const Auth = () => {
             await userDispatch({ type: LOGIN, payload:{username:username}});
             navigate({
                 pathname:BOOKS_ROUTE,
-                search:DEFAULT_SEARCH_QUERY
             })
         }
     }

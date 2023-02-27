@@ -7,7 +7,6 @@ export const BOOKS_ROUTE = '/books'
 export const LOGIN_ROUTE = '/'
 export const REGISTRATION_ROUTE = '/registration'
 export const CABINET = '/user'
-export const DEFAULT_SEARCH_QUERY = '?offset=0&limit=6'
 
 
 export const SERVER_URL = 'http:/localhost:3000/x-course-task/'

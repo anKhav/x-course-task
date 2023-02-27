@@ -7,12 +7,8 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 
-export const fetchBooks = data => ({
+export const fetchBooks = (payload) => ({
     type: INITIAL__BOOKS,
-    data
+    payload
 });
 
-export const getInCart = data => ({
-    type: INITIAL__BOOKS,
-    data
-});

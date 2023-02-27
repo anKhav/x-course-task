@@ -15,11 +15,12 @@ const BookCard = ({id,author, price, img, title})  => {
     const { books } = useContext(BooksContext);
     const {specificBookDispatch} = useContext(SpecificBookContext)
 
-
     const viewingBook = (e) => {
         e.preventDefault()
         const target = e.target
-        const id = Number(target.id[target.id.length - 1])
+        console.log(target.id);
+        const id = Number(target.id.split('-').splice(1))
+        console.log(id);
         // const selectedBook = books.filter((book) => book.id === id)
         specificBookDispatch({type:INITIAL__BOOKS, id:id, arr:books})
         navigate(`/book/${id}`)

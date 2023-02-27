@@ -7,7 +7,8 @@ import {cartReducer} from "../reducers/CartReducer";
 const initial = {
     totalAmount:0,
     totalPrice:0,
-    data:[]
+    data:[],
+    error:''
 }
 
 const initialState = getCart() || initial;

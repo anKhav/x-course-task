@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 
-import './main.css'
+import './normilize.css'
 import AppRouter from "./AppRouter";
 import Header from "./layouts/Header/Header";
 import BooksProvider from "./features/providers/BooksProvider";

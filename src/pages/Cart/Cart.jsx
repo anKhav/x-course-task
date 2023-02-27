@@ -55,7 +55,7 @@ const Cart = () => {
                         </div>
                         <div className="cart__footer">
                             <p className="cart__total-price">
-                                <h4 className='title'>Total price:</h4>
+                                <span className='title'>Total price:</span>
                                 <span>{totalPrice}</span>
                             </p>
                         </div>

@@ -9,45 +9,33 @@ import {BooksContext} from "../../features/context/BooksContext";
 import {filterBooksByPrice} from "../../utils/filterBooks";
 
 import './Books.scss'
-import {useSearchParams} from "react-router-dom";
-import {getPageNumbers, getPaginatedArr} from "../../utils/pagination";
-import useWindowSize from "../../hooks/useWindowSize";
-import {DEFAULT_SEARCH_QUERY} from "../../utils/consts";
+import {INITIAL__BOOKS} from "../../features/actions";
+import {middleware} from "../../utils/middleware";
+import {getBooks} from "../../services/booksService";
+import {reduceTitle} from "../../utils/reduceTitle";
 
 
 
 
 const Books = () => {
     const { books } = useContext(BooksContext);
-    const [searchParams, setSearchParams] = useSearchParams()
-    const offset = searchParams.get('offset')
-    const limit = searchParams.get('limit')
+    console.log(books)
+    const { booksDispatch } = useContext(BooksContext);
 
     const [filteredBooks, setFilteredBooks] = useState([])
     const [selectedItem, setSelectedItem] = useState('Price')
 
-    const [pageAmount, setPageAmount] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-
 
     const [keyword, setKeyword] = useState('')
 
-    const paginatedBooks = getPaginatedArr(books, offset, limit).books
+    useEffect(() =>{
+        const res =  getBooks(booksDispatch)
+    } , []);
 
-    const {innerWidth} = useWindowSize()
-
-    useEffect(() => {
-        if (innerWidth <= 768) {
-            setSearchParams('?offset=0&limit=2')
-        } else {
-            setSearchParams(DEFAULT_SEARCH_QUERY)
-        }
-    }, [innerWidth])
 
     useEffect(() => {
-        !limit ? setFilteredBooks(books) : setFilteredBooks(paginatedBooks)
-        limit && setPageAmount(getPageNumbers(books,limit))
-    }, [books, limit, offset])
+        setFilteredBooks(books)
+    }, [books])
 
     useEffect(() => {
         const searched = books.filter((book) => {
@@ -64,19 +52,6 @@ const Books = () => {
         filterBooksByPrice(selectedItem, books, setFilteredBooks)
         setKeyword('')
     }, [selectedItem])
-
-
-    const beforeNeighbours = pageAmount.filter((num) => num < currentPage).slice(-2)
-    const afterNeighbours = pageAmount.filter((num) => num > currentPage).slice(0,2)
-    let resArray = []
-    if (pageAmount.length > 10 || innerWidth >= 768){
-        beforeNeighbours.length !==0 && resArray.push(...beforeNeighbours)
-        resArray.push(currentPage)
-        resArray.push(...afterNeighbours)
-    } else {
-        resArray = pageAmount
-    }
-        console.log(resArray);
 
     return (
             <div className="books">
@@ -96,38 +71,10 @@ const Books = () => {
                                             price={book.price}
                                             author={book.author}
                                             img={book.image}
-                                            title={book.title}
+                                            title={reduceTitle(book.title)}
                                         />
                                     }
                                 )
-                            }
-                            {
-                                pageAmount.length !== 0 && <div className="pagination">
-                                    {
-                                        pageAmount.map((page,i) => {
-
-                                            return <button
-                                                key={page}
-                                                data-page={page}
-                                                className={currentPage === page ? 'pagination__button pagination__button--active' : 'pagination__button'}
-                                               onClick={(e) => {
-
-                                                    console.log(typeof page)
-                                                    console.log(typeof currentPage)
-                                                    e.preventDefault()
-                                                    setCurrentPage(Number(e.target.dataset.page))
-                                                    setKeyword('')
-                                                    window.scrollTo({
-                                                        top: 0,
-                                                        behavior: "smooth"
-                                                    });
-                                                    setSearchParams(`offset=${(Number(e.target.innerText) -1) * limit}&limit=${limit}`)
-                                                }}
-                                                >{page}</button>
-
-                                        })
-                                    }
-                                </div>
                             }
                         </div>
                         :
