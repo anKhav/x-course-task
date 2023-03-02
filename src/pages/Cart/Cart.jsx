@@ -6,21 +6,28 @@ import {CartContext} from "../../features/context/CartContext";
 import {CLEAR__CART} from "../../features/actions";
 import {ThreeDots} from "react-loader-spinner";
 import {Link} from "react-router-dom";
+import DeleteBasketSvg from "../../components/UI/Icons/DeleteBasketSvg";
+import {round} from "lodash";
+import img from "../../images/shopping-cart-icon.svg";
+import BookInCart from "../../layouts/BookInCart/BookInCart";
 
 const Cart = () => {
     const {cart:{data, totalPrice}, cartDispatch} = useContext(CartContext)
 
-    const [books, setBooks] = useState(data)
+    const [books, setBooks] = useState([])
+    const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         setBooks(data)
     }, [data])
 
+
+
     const purchaseHandler = (e) => {
         e.preventDefault()
         cartDispatch({type:CLEAR__CART})
-        setBooks([])
     }
+
     return (
         books ?
             <div className='cart'>
@@ -33,8 +40,11 @@ const Cart = () => {
                     </MyButton>
                 </div>
                 {books.length === 0 ?
-                    <div>
-                        Cart is empty
+                    <div className='cart--empty'>
+                        <span className="cart__title--empty">
+                            Your cart is empty
+                        </span>
+                        <img src={img} alt="Cart icon"/>
                     </div>
                     :
                     <div className='cart__wrapper'>
@@ -42,13 +52,7 @@ const Cart = () => {
                             {
                                 books.map(book => {
                                     return (
-                                        <div className="book" key={book.id}>
-                                            <Link className="book__name" to={`/book/${book.id}`}>
-                                                {book.title}
-                                            </Link>
-                                            <span className="book__count">{book.amount === 1 ? book.amount + 'pc.': book.amount + 'pcs.'}</span>
-                                            <span className="book__total-price">{book.price * book.amount}</span>
-                                        </div>
+                                        <BookInCart key={book.id} book={book}/>
                                     )
                                 })
                             }
@@ -56,7 +60,7 @@ const Cart = () => {
                         <div className="cart__footer">
                             <p className="cart__total-price">
                                 <span className='title'>Total price:</span>
-                                <span>{totalPrice}</span>
+                                <span>{totalPrice}$</span>
                             </p>
                         </div>
                     </div>

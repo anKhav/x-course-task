@@ -3,13 +3,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  //justify-content: center;
   width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 200px);
+  &--empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    flex:1 1 auto;
+    img{
+      width: 200px;
+    }
+  }
+  &__title{
+    &--empty{
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+  }
   &__wrapper{
     width: 100%;
   }
   &__header{
     width: 100%;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -21,15 +42,63 @@
     align-items: center;
     justify-content: center;
     .book{
-      padding: 20px;
       width: 100%;
-      border: 1px solid rgb(147, 147, 147);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 20px;
-      transition: .2s;
+      .buying-limit{
+        display: flex;
+        justify-content: flex-end;
+      }
+      &__price{
+        margin-right: 20px;
+      }
+      &__amount-buttons{
+        margin-left: 20px;
+        margin-right: 20px;
+        display: flex;
+        .decrement{
+          &:hover{
+            color: red;
+          }
+        }
+        .increment{
+          &[disabled]{
+            color: lightgrey;
+            &:hover{
+              color: lightgrey;
+              cursor: not-allowed;
+            }
+          }
+          &:hover{
+            color:green;
+          }
+        }
+        button{
+          font-size: 22px;
+          color: black;
+          transition: .4s;
+          width: 25px;
+          height: 25px;
+          display: flex;
+          align-self: center;
+          justify-content: center;
+          font-weight: bold;
+          &:not(:last-child){
+            margin-right: 10px;
+          }
+        }
+      }
+      &__remove{
+        background-color: transparent;
+        width: 25px;
+        svg{
+          width: 100%;
+          fill: black;
+          transition: .4s;
+          &:hover{
+            fill:red;
+            transition: .4s;
+          }
+        }
+      }
       &:hover{
         border-color: black;
         transition: .2s;
@@ -57,6 +126,17 @@
         text-align: right;
       }
     }
+    }
+    .book__wrapper{
+      padding: 20px;
+      width: 100%;
+      border: 1px solid rgb(147, 147, 147);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px;
+      transition: .2s;
   }
   &__footer{
     display: flex;

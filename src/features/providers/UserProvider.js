@@ -4,7 +4,7 @@ import {userReducer} from "../reducers/UserReducer";
 import {getUser} from "../../services/UserService";
 import {LOGIN} from "../actions";
 
-const initialState = getUser() || {};
+const initialState = getUser() || null;
 const UserProvider = ({children}) => {
     const [user, userDispatch] = useReducer(userReducer, initialState)
     const value = {user, userDispatch}

@@ -2,8 +2,7 @@
   &__menu{
     position: fixed;
     z-index: 1000;
-    top: 0;
-    right: 0;
+    right: -100%;
     bottom: 0;
     display: flex;
     flex-direction: column;
@@ -11,22 +10,36 @@
     align-items: center;
     width: 300px;
     height: 100vh;
-    background-color: #ffffffe0;
+    background-color: rgba(101, 94, 94, 0.93);
+    opacity: 0;
+    transition: .4s;
+    &--open{
+      right: 0;
+      opacity: 1;
+      transition: .4s;
+    }
   }
 
   &__wrapper{
     position: fixed;
     z-index: 100;
-    right: 0;
     bottom: 0;
-    left: 0;
-    display: none;
+    top: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.69);
-
+    right: -100%;
+    opacity: 0;
+    transition: .4s;
     &--open{
       display: block;
+      right: 0;
+      opacity: 1;
+      transition: .4s;
+      .burger__button--to-close{
+        transform: rotate(500deg);
+        transition: .4s;
+      }
     }
   }
 
@@ -44,12 +57,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 42px;
-      height: 42px;
+      width: 30px;
+      height: 30px;
       margin: 50px 20px 100px;
       border: none;
       background: none;
-      transform: rotate(45deg);
+      transition: .4s;
       &:hover{
         cursor: pointer;
       }
@@ -68,7 +81,7 @@
         &::before{
           width: 100%;
           height: 2px;
-          left: calc(50% - 1px);
+          left: calc(50% - 2px);
           bottom: 50%;
         }
 
@@ -76,7 +89,7 @@
           width: 2px;
           height: 100%;
           right: 50%;
-          top: calc(50% - 1px);
+          top: calc(50% - 2px);
         }
       }
     }

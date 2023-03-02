@@ -369,6 +369,9 @@ template {
 [hidden] {
   display: none;
 }
+button{
+  background-color: transparent;
+}
 
 /* Works for Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

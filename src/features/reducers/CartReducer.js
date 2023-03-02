@@ -1,17 +1,17 @@
 
 import {addToCart, clearCart} from "../../services/CartService";
 import {ADD__CART, CLEAR__CART} from "../actions";
+import {calculateTotalAmount, calculateTotalPrice} from "../../utils/CartReducerHelpers";
+import {round} from "lodash";
 
 export function cartReducer(state, action) {
     switch (action.type) {
 
         case ADD__CART: {
-                    // if ((Number(state.totalAmount) + Number(action.book.amount)) < 120) {
                         if (state.data.length === 0){
                             state.totalAmount = action.book.amount
-                            state.totalPrice = action.book.price * action.book.amount
+                            state.totalPrice = round(action.book.price * action.book.amount, 2)
                             state.data.push(action.book)
-                            console.log(Number(state.totalAmount) + Number(action.book.amount))
                             addToCart(state)
                             return state
                         } else {
@@ -19,34 +19,18 @@ export function cartReducer(state, action) {
                                 return (item.id === action.book.id)
                             })
                             if(itemIndex >= 0){
-                                console.log(state.data[itemIndex].amount);
                                 state.data[itemIndex].amount += action.book.amount
                             } else {
                                 const tempProduct = {...action.book}
                                 state.data.push(tempProduct)
                             }
-                            state.totalAmount = state.data.reduce((acc,book) => {
-                                acc += book.amount
-                                return acc
-                            },0)
-                            state.totalPrice = state.data.reduce((acc,book) => {
-                                acc += book.price * book.amount
-                                return acc
-                            },0)
+                            state.totalAmount = calculateTotalAmount(state.data)
+                            state.totalPrice = round(calculateTotalPrice(state.data),2)
                             state.error = ''
-                            console.log(state);
-                            console.log(state.totalAmount);
-                            console.log(action.book.amount);
-                            console.log(Number(state.totalAmount) + Number(action.book.amount))
                             addToCart(state)
                             return state
                         }
-                    // } else  {
-                    //     state = {...state, error:'Too much'}
-                    //     console.log(state)
-                    // }
             }
-            // addToCart(state)
             return state
         case CLEAR__CART: {
             clearCart()
@@ -55,6 +39,45 @@ export function cartReducer(state, action) {
                 totalPrice:0,
                 data:[]
             }
+            return state
+        }
+        case 'REMOVE_BOOK' : {
+            const filteredBooks = state.data.filter(book => book.id !== action.id)
+            state.data = [...filteredBooks]
+            state.totalAmount = calculateTotalAmount(state.data)
+            state.totalPrice = round(calculateTotalPrice(state.data),2)
+            addToCart(state)
+            return state
+        }
+        case 'DECREMENT_AMOUNT' : {
+            const selectedBook = state.data.find(book => book.id === action.id)
+            const itemIndex = state.data.findIndex((item) => {
+                return (item.id === action.id)
+            })
+            if(itemIndex >= 0){
+                state.data[itemIndex].amount--
+            }
+            state.totalAmount = calculateTotalAmount(state.data)
+            state.totalPrice = round(calculateTotalPrice(state.data),2)
+
+            if (state.data[itemIndex].amount === 0) {
+                state.data = state.data.filter(book => state.data[itemIndex].amount === book.id)
+                return state
+            }
+            addToCart(state)
+            return state
+        }
+        case 'INCREMENT_AMOUNT' : {
+            const selectedBook = state.data.find(book => book.id === action.id)
+            const itemIndex = state.data.findIndex((item) => {
+                return (item.id === action.id)
+            })
+            if(itemIndex >= 0){
+                state.data[itemIndex].amount++
+            }
+            state.totalAmount = calculateTotalAmount(state.data)
+            state.totalPrice = round(calculateTotalPrice(state.data),2)
+            addToCart(state)
             return state
         }
         case 'SET_ERROR' : {

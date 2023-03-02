@@ -5,6 +5,7 @@ const getCart = () => {
     return JSON.parse(localStorage.getItem('cart'))
 }
 
+
 const clearCart = () => {
     localStorage.removeItem('cart')
 }

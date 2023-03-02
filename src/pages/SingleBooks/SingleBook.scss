@@ -77,6 +77,9 @@
 
     .my-button{
       align-self: flex-end;
+      &[disabled]{
+        margin-top: 10px;
+      }
     }
   }
 
@@ -172,4 +175,9 @@
       }
     }
   }
+}
+.buying-limit{
+  color: red;
+  align-self: flex-end;
+  margin-bottom: 20px;
 }

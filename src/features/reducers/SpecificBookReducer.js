@@ -7,7 +7,6 @@ export const reducer = (state, action) => {
         case INITIAL__SPECIFIC__BOOK:
             const specificBook = action.arr.find(book =>  book.id === action.id)
             setSpecificBook(specificBook)
-            console.log(action)
             return specificBook
         default:
             return state;

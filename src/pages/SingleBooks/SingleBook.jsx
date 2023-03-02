@@ -12,6 +12,8 @@ import {useParams} from "react-router-dom";
 import {ThreeDots} from "react-loader-spinner";
 import {CartContext} from "../../features/context/CartContext";
 import {ADD__CART, INITIAL__BOOKS, INITIAL__SPECIFIC__BOOK} from "../../features/actions";
+import {getBooks} from "../../services/booksService";
+import {round} from "lodash";
 
 
 const SingleBook = () => {
@@ -26,19 +28,20 @@ const SingleBook = () => {
 
     const [bookToCart, setBookToCart] = useState({})
     const [amount, setAmount] = useState(1)
+
     useEffect(() => {
-        fetch('books.json')
-            .then(response => response.json())
-            .then(res => res.books)
-            .then(data => booksDispatch({type:INITIAL__BOOKS, payload:data}));
-    }, []);
+        getBooks(booksDispatch)
+        window.scrollTo({top:0,behavior:"smooth"})
+    } , [])
+
+    const buyingLimit = 120
+
     useEffect(() => {
-        if (Number(amount) + Number(totalAmount) > 120){
-            cartDispatch({type:'SET_ERROR', error:'Too much'})
+        if (Number(amount) + Number(totalAmount) > buyingLimit){
+            cartDispatch({type:'SET_ERROR', error:`You can buy only ${buyingLimit} pcs.`})
             setIsError(true)
-            console.log(isError)
         } else {
-            setIsError('')
+            setIsError(false)
         }
     }, [totalAmount, amount])
 
@@ -64,7 +67,7 @@ const SingleBook = () => {
             if (amount === null) {
                 setAmount(1)
             }
-            setBookToCart({...bookToCart, amount:Number(amount) })
+            setBookToCart({...bookToCart, amount:+amount })
             setState(prev => !prev)
     }
 
@@ -120,9 +123,10 @@ const SingleBook = () => {
                                     </div>
                                 </div>
                                 {
-                                    isError && <div>{error}</div>
+                                    isError && <div className='buying-limit'>{error}</div>
                                 }
                                 <MyButton
+                                    className='single-book__add-button'
                                     disabled={isError || amount === null}
                                     onClick={(e) => addToCartHandler(e)}
                                 >Add to Cart</MyButton>

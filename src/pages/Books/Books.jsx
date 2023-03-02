@@ -52,7 +52,6 @@ const Books = () => {
             setFilteredBooks(books)
         }
     }
-
     return (
             <div className="books">
                 <div className="books__header">

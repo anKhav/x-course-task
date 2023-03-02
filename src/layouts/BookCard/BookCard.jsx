@@ -18,10 +18,7 @@ const BookCard = ({id,author, price, img, title})  => {
     const viewingBook = (e) => {
         e.preventDefault()
         const target = e.target
-        console.log(target.id);
-        const id = Number(target.id.split('-').splice(1))
-        console.log(id);
-        // const selectedBook = books.filter((book) => book.id === id)
+        const id = +target.id.split('-').splice(1)
         specificBookDispatch({type:INITIAL__BOOKS, id:id, arr:books})
         navigate(`/book/${id}`)
     }
