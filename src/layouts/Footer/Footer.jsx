@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <div className='footer'>
             <p>
-                Виконано в <a href="https://prometheus.org.ua/" target="_blank">Prometheus</a> © 2022
+                Виконано в <a href="https://prometheus.org.ua/"  rel="noreferrer" target="_blank">Prometheus</a> © 2022
             </p>
         </div>
     );

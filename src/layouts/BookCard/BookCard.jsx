@@ -13,13 +13,11 @@ const BookCard = ({id,author, price, img, title})  => {
     const navigate = useNavigate()
 
     const { books } = useContext(BooksContext);
-    const {specificBookDispatch} = useContext(SpecificBookContext)
 
     const viewingBook = (e) => {
         e.preventDefault()
         const target = e.target
         const id = +target.id.split('-').splice(1)
-        specificBookDispatch({type:INITIAL__BOOKS, id:id, arr:books})
         navigate(`/book/${id}`)
     }
 

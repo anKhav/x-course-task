@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import {privateRoutes, publicRoutes} from "./routes";
-import {UserContext} from "./features/context/UserContext";
-import {useContext, useEffect} from "react";
+import {useEffect} from "react";
 import Books from "./pages/Books/Books";
 import {BOOKS_ROUTE, INDEX_ROUTE} from "./utils/consts";
+import {useUser} from "./hooks/useUser";
 
 
 const AppRouter = () => {
     const {pathname} = useLocation()
     const navigate = useNavigate()
-    const {user} = useContext(UserContext)
+    const {user} = useUser()
     useEffect(() => {
         if (Object.keys(user).length !== 0){
             pathname === INDEX_ROUTE && navigate(BOOKS_ROUTE)

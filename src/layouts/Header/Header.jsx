@@ -18,7 +18,7 @@ const Header = ({title, authorName}) => {
                 <span>{authorName}</span>
             </Link>
             {
-                Object.keys(user).length !== 0 ? <div>{innerWidth > 768 ? <Nav/> : <BurgerMenu/>}</div> : <div></div>
+                Object.keys(user).length !== 0  ? <div>{innerWidth > 768 ? <Nav/> : <BurgerMenu/>}</div> : <div></div>
             }
         </header>
     );

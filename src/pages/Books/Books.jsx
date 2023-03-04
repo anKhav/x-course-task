@@ -4,29 +4,28 @@ import BookCard from "../../layouts/BookCard/BookCard"
 
 import SearchInput from "../../components/UI/Inputs/SearchInput"
 import Dropdown from "../../components/UI/Inputs/Dropdown"
-import {useContext, useEffect, useState} from "react"
-import {BooksContext} from "../../features/context/BooksContext"
+import {useEffect, useState} from "react"
 
 import './Books.scss'
 
 import {getBooks} from "../../services/booksService"
 import {reduceTitle} from "../../utils/reduceTitle"
+import {useBooks} from "../../hooks/useBooks";
 
 
 
 
 const Books = () => {
-    const { books, booksDispatch } = useContext(BooksContext)
+    const { books, booksDispatch } = useBooks()
+
     const [keyword, setKeyword] = useState('')
     const [searchResults, setSearchResults] = useState([])
     const [selectedPrice, setSelectedPrice] = useState('')
     const [filteredBooks, setFilteredBooks] = useState([])
-    const searchHandler = (e) => {
-        setKeyword(e.target.value)
-    }
+
     useEffect(() => {
             const res =  getBooks(booksDispatch)
-    } , [])
+    } , [booksDispatch])
 
     useEffect(() => {
         setSearchResults(books)
@@ -39,6 +38,10 @@ const Books = () => {
         )
         setSearchResults(results)
     }, [keyword, filteredBooks])
+
+    const searchHandler = (e) => {
+        setKeyword(e.target.value)
+    }
 
     const priceHandler = (e) => {
         setSelectedPrice(e.target.value)
@@ -55,12 +58,19 @@ const Books = () => {
     return (
             <div className="books">
                 <div className="books__header">
-                    <SearchInput value={keyword} onChange={searchHandler}/>
-                    <Dropdown value={selectedPrice} onChange={priceHandler}/>
+                    <SearchInput
+                        value={keyword}
+                        onChange={searchHandler}/>
+                    <Dropdown
+                        value={selectedPrice}
+                        onChange={priceHandler}/>
                 </div>
                 {
                     filteredBooks.length !== 0 ?
-                        <div className="books__content">
+                        <div
+                            className="books__content"
+                            data-testid='books'
+                        >
                             {
                                 searchResults.length === 0 ?
                                     <p className='books__content--not-found'>
@@ -82,7 +92,10 @@ const Books = () => {
                             }
                         </div>
                         :
-                        <div className="loader">
+                        <div
+                            className="loader"
+                            data-testid='loader'
+                        >
                             <ThreeDots
                                 height="120px"
                                 width="120px"

@@ -43,7 +43,7 @@ const Auth = () => {
         , [isDisabled]);
 
     return (
-        <section className='section-outer'>
+        <section className='section-outer' data-testid='user'>
             <div className="section-inner auth">
                 <div className="auth__avatar">
                     <img src={img} alt=""/>

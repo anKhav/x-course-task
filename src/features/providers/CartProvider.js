@@ -18,6 +18,6 @@ const CartProvider = ({children}) => {
     const [cart, cartDispatch] = useReducer(cartReducer, initialState)
     const [state, setState] = useState(true)
     const value = {cart, cartDispatch, setState}
-    return <CartContext.Provider value={{cart, cartDispatch, setState}}>{children}</CartContext.Provider>
+    return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 export default CartProvider

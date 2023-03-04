@@ -5,9 +5,6 @@ import './Cart.scss'
 import {CartContext} from "../../features/context/CartContext";
 import {CLEAR__CART} from "../../features/actions";
 import {ThreeDots} from "react-loader-spinner";
-import {Link} from "react-router-dom";
-import DeleteBasketSvg from "../../components/UI/Icons/DeleteBasketSvg";
-import {round} from "lodash";
 import img from "../../images/shopping-cart-icon.svg";
 import BookInCart from "../../layouts/BookInCart/BookInCart";
 
@@ -15,7 +12,7 @@ const Cart = () => {
     const {cart:{data, totalPrice}, cartDispatch} = useContext(CartContext)
 
     const [books, setBooks] = useState([])
-    const [isError, setIsError] = useState(false)
+    // const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         setBooks(data)
