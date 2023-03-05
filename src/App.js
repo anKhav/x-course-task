@@ -8,6 +8,7 @@ import BooksProvider from "./features/providers/BooksProvider";
 import UserProvider from "./features/providers/UserProvider";
 import CartProvider from "./features/providers/CartProvider";
 import Footer from "./layouts/Footer/Footer";
+import './common.scss'
 
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
                     <UserProvider>
                         <CartProvider>
                             <Header title='JS Band Store' authorName='Anton Khavaldzhi'/>
-                                <main className='main'>
+                                <main className='main section-outer'>
                                     <AppRouter/>
                                 </main>
                             <Footer/>

@@ -1,11 +1,14 @@
+@import 'src/common';
+
 .auth{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 212px);
+  color: $main-text-color;
   .not-allowed{
-    color: red;
+    color: $danger-color;
     margin-bottom: 20px;
   }
   &__button{
@@ -41,12 +44,13 @@
 
     label{
       margin-bottom: 20px;
+      color: inherit;
     }
 
     input{
       margin-bottom: 20px;
       padding: 10px 20px;
-      border: 1px solid #797979;
+      border: 1px solid $secondary-bg-color;
       border-radius: 10px;
     }
 

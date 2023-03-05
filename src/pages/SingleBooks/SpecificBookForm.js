@@ -1,17 +1,23 @@
-import React, {useEffect, useState} from 'react';
+
+import React, {useEffect, useRef, useState} from 'react';
 import {MyButton} from "../../components/UI/MyButton/MyButton";
 import {ADD__CART} from "../../features/actions";
 import {useCart} from "../../hooks/useCart";
 import {LIMIT_BOOKS_TO_CART} from "../../utils/consts";
+import FlyingBook from "../../components/FlyingBook/FlyingBook";
 
 const SpecificBookForm = ({book}) => {
 
     const {cartDispatch, setState} = useCart()
     const {cart:{totalAmount, error}} = useCart()
 
+
     const [isError, setIsError] = useState(false)
     const [bookToCart, setBookToCart] = useState({})
     const [amount, setAmount] = useState(1)
+    const [isClicked, setIsClicked] = useState(false)
+
+    const btnRef = useRef(null)
 
     useEffect(() => {
         if (Number(amount) + Number(totalAmount) > LIMIT_BOOKS_TO_CART){
@@ -40,6 +46,8 @@ const SpecificBookForm = ({book}) => {
         if (amount === null) {
             setAmount(1)
         }
+        setIsClicked(prevState => !prevState)
+        setTimeout(() => setIsClicked(prevState => !prevState),950)
         setBookToCart({...bookToCart, amount:+amount })
         setState(prev => !prev)
     }
@@ -51,7 +59,7 @@ const SpecificBookForm = ({book}) => {
                 <span className="value">{book.price}$</span>
             </div>
             <div className="single-book__count">
-                <label className="title">Count</label>
+                <label  className="title">Count</label>
                 <div className="single-book__input">
                     <input
                         value={amount}
@@ -90,8 +98,10 @@ const SpecificBookForm = ({book}) => {
                 isError && <div className='buying-limit'>{error}</div>
             }
             <div
+                ref={btnRef}
                 data-testid='total-price'
             >{(amount * book.price).toFixed(2)} $</div>
+            <FlyingBook button={btnRef} click={isClicked}/>
             <MyButton
                 className='single-book__add-button'
                 disabled={isError || amount === null}

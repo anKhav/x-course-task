@@ -1,19 +1,26 @@
+@import "src/common";
+
 .my-button{
   padding: 10px 20px;
   //border: 1px solid #000;
   border-radius: 10px;
   transition: .4s;
-  background-color: #e7e7e7;
+  color: $secondary-text-color;
+  background-color: $main-bg-color;
+  border: 1px solid $secondary-bg-color;
 
   &:hover{
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: $secondary-bg-color;
+    color: $main-text-color--light;
+    border-color: $main-text-color--light;
     transition: .4s;
   }
 }
 .my-button[disabled]{
   cursor: not-allowed;
+  background-color: lightgrey;
   &:hover{
-    background-color: #e7e7e7;
+    background-color: lightgrey;
   }
 }

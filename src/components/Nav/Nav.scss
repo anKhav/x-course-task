@@ -1,3 +1,5 @@
+@import "src/common";
+
 .nav{
   display: flex;
   align-items: center;
@@ -9,24 +11,53 @@
   margin-right: 20px;
   position: relative;
   z-index: 100;
-  padding: 10px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  &:hover{
+    .cart-svg{
+      animation: cart-shaking 0.5s linear;
+      fill:$secondary-bg-color;
+    }
+  }
   .amount{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 20px;
     height: 20px;
-    background-color: black;
+    background-color: $main-text-color;
     z-index: 1000;
-    color: white;
+    color: $main-text-color--light;
     border-radius: 100%;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 3px;
+    right: 3px;
   }
+  @keyframes cart-shaking {
+    0% {
+      transform:scale(0.5);
+    }
+    25%{
+      transform: rotate(-20deg) scale(0.5);
+    }
+    50% {
+      transform: rotate(-20deg) scale(0.5);
+    }
+    75% {
+      transform: rotate(20deg) scale(0.5);
+    }
+    100% {
+      transform: rotate(-20deg) scale(0.5);
+    }
+  }
+  //svg{
+  //  width: 20px;
+  //  height: 20px;
+  //}
+  .cart-svg{
+    transform: scale(0.5);
 
-  img{
-    width: 100%;
   }
 }
 
@@ -50,20 +81,38 @@
   .my-button{
     order: 4;
   }
+  .cart-svg{
+    fill: $main-text-color--light;
+  }
 
   .avatar{
     order: 1;
     margin-bottom: 20px;
+    border-color: $main-bg-color;
   }
 
   .username{
     order: 2;
     margin-bottom: 30px;
+    color: $main-text-color--light;
+    font-weight: 400;
+  }
+  svg{
+    fill: red;
   }
 
   .cart__icon{
     order: 3;
     margin-right: 0;
     margin-bottom: 30px;
+    .amount{
+      background-color: $main-bg-color;
+      color: $main-text-color;
+    }
+    &:hover{
+      .cart-svg{
+        fill: $secondary-text-color;
+      }
+    }
   }
 }

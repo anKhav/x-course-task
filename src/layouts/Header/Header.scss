@@ -1,14 +1,18 @@
+@import 'src/common';
+
 .header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 70px;
   padding: 50px 20px;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  border-top: 1px solid $main-text-color;
+  border-bottom: 1px solid $main-text-color;
+  &__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   &__logo{
     font-size: 32px;
-    color: black;
+    color: $main-text-color;
     text-decoration: none;
     font-weight: bold;
     width: 40%;

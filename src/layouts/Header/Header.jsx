@@ -13,13 +13,15 @@ const Header = ({title, authorName}) => {
 
     return (
         <header className='header'>
-            <Link to='/' className='header__logo'>
-                <span>{title}</span> /
-                <span>{authorName}</span>
-            </Link>
-            {
-                Object.keys(user).length !== 0  ? <div>{innerWidth > 768 ? <Nav/> : <BurgerMenu/>}</div> : <div></div>
-            }
+            <div className='section-outer header__wrapper'>
+                <Link to='/' className='header__logo'>
+                    <span>{title}</span> /
+                    <span>{authorName}</span>
+                </Link>
+                {
+                    Object.keys(user).length !== 0  ? <div>{innerWidth > 768 ? <Nav/> : <BurgerMenu/>}</div> : <div></div>
+                }
+            </div>
         </header>
     );
 };

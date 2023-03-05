@@ -18,17 +18,7 @@ input::-webkit-inner-spin-button {
 }
 /* Sections
    ========================================================================== */
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.main {
-  flex: 1 0 auto;
-}
-.footer {
-  flex-shrink: 0;
-}
+
 /**
  * Remove the margin in all browsers.
  */

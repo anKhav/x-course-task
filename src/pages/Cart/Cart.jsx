@@ -1,18 +1,17 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {MyButton} from "../../components/UI/MyButton/MyButton";
 
 import './Cart.scss'
-import {CartContext} from "../../features/context/CartContext";
 import {CLEAR__CART} from "../../features/actions";
 import {ThreeDots} from "react-loader-spinner";
 import img from "../../images/shopping-cart-icon.svg";
 import BookInCart from "../../layouts/BookInCart/BookInCart";
+import {useCart} from "../../hooks/useCart";
 
 const Cart = () => {
-    const {cart:{data, totalPrice}, cartDispatch} = useContext(CartContext)
+    const {cart:{data, totalPrice}, cartDispatch} = useCart()
 
     const [books, setBooks] = useState([])
-    // const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         setBooks(data)

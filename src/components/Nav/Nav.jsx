@@ -15,6 +15,7 @@ const Nav = () => {
 
     const navigate = useNavigate()
 
+
     const logout = async (e) => {
         e.preventDefault()
         await userDispatch({type: LOGOUT})

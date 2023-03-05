@@ -1,4 +1,4 @@
-import {useEffect, useReducer, useState} from "react";
+import {useReducer, useRef, useState} from "react";
 
 import {CartContext} from "../context/CartContext";
 import {getCart} from "../../services/CartService";
@@ -17,7 +17,9 @@ const initialState = getCart() || initial;
 const CartProvider = ({children}) => {
     const [cart, cartDispatch] = useReducer(cartReducer, initialState)
     const [state, setState] = useState(true)
-    const value = {cart, cartDispatch, setState}
+    const [cartPosition, setCartPosition] = useState({x:null, y:null})
+    const cartRef = useRef(null)
+    const value = {cart, cartDispatch, setState, cartRef, cartPosition, setCartPosition}
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 export default CartProvider

@@ -11,6 +11,7 @@ import './Books.scss'
 import {getBooks} from "../../services/booksService"
 import {reduceTitle} from "../../utils/reduceTitle"
 import {useBooks} from "../../hooks/useBooks";
+import {filterBooksByPrice} from "../../utils/filterBooks";
 
 
 
@@ -39,31 +40,15 @@ const Books = () => {
         setSearchResults(results)
     }, [keyword, filteredBooks])
 
-    const searchHandler = (e) => {
-        setKeyword(e.target.value)
-    }
-
-    const priceHandler = (e) => {
-        setSelectedPrice(e.target.value)
-        if (e.target.value === '0-15'){
-            setFilteredBooks(books.filter(({price}) => price <= 15))
-        } else if (e.target.value === '15-30'){
-            setFilteredBooks(books.filter(({price}) => price >= 15 && price <= 30))
-        } else if (e.target.value === '30+'){
-            setFilteredBooks(books.filter(({price}) => price >= 30))
-        } else {
-            setFilteredBooks(books)
-        }
-    }
     return (
             <div className="books">
                 <div className="books__header">
                     <SearchInput
                         value={keyword}
-                        onChange={searchHandler}/>
+                        onChange={(e) => setKeyword(e.target.value)}/>
                     <Dropdown
                         value={selectedPrice}
-                        onChange={priceHandler}/>
+                        onChange={(e) => filterBooksByPrice(e.target.value,books,setFilteredBooks)}/>
                 </div>
                 {
                     filteredBooks.length !== 0 ?
