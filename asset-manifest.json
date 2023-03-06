@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/x-course-task/static/css/main.b5cc101e.css",
-    "main.js": "/x-course-task/static/js/main.e77da9ec.js",
+    "main.css": "/x-course-task/static/css/main.024f2509.css",
+    "main.js": "/x-course-task/static/js/main.ad20192c.js",
     "static/media/19-book-outline.gif": "/x-course-task/static/media/19-book-outline.bf2404af4944660da61b.gif",
     "static/media/imageNotFound.png": "/x-course-task/static/media/imageNotFound.298b98203c3825c61303.png",
     "static/media/shopping-cart-icon.svg": "/x-course-task/static/media/shopping-cart-icon.3124b5b1df69e0fd5a1d161e33888711.svg",
     "static/media/user-svgrepo-com.svg": "/x-course-task/static/media/user-svgrepo-com.0da86485f899b7af55296a70f2569788.svg",
     "index.html": "/x-course-task/index.html",
     "static/media/search-svgrepo-com.svg": "/x-course-task/static/media/search-svgrepo-com.5ca6b0e48c3c1206792e0d6952b52b7f.svg",
-    "main.b5cc101e.css.map": "/x-course-task/static/css/main.b5cc101e.css.map",
-    "main.e77da9ec.js.map": "/x-course-task/static/js/main.e77da9ec.js.map"
+    "main.024f2509.css.map": "/x-course-task/static/css/main.024f2509.css.map",
+    "main.ad20192c.js.map": "/x-course-task/static/js/main.ad20192c.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5cc101e.css",
-    "static/js/main.e77da9ec.js"
+    "static/css/main.024f2509.css",
+    "static/js/main.ad20192c.js"
   ]
 }
