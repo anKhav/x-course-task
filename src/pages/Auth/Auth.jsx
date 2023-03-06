@@ -3,20 +3,20 @@ import {MyButton} from "../../components/UI/MyButton/MyButton";
 import img from '../../images/user-svgrepo-com.svg'
 import './Auth.scss'
 import {useNavigate} from "react-router-dom";
-import {useCallback, useContext, useState} from "react";
+import {useCallback, useState} from "react";
 import debounce from 'lodash.debounce'
 import {AuthFormValidator} from '../../validators/AuthFormValidator'
-import {UserContext} from "../../features/context/UserContext";
 import {LOGIN} from "../../features/actions";
 import {hasWhiteSpace} from "../../utils/hasWhiteSpace";
 import {BOOKS_ROUTE} from "../../utils/consts";
+import {useUser} from "../../hooks/useUser";
 
 
 
 
 const Auth = () => {
     const [username, setUsername] = useState('')
-    const {userDispatch} = useContext(UserContext)
+    const {userDispatch} = useUser()
     const [error, setError] = useState(false)
 
 

@@ -1,10 +1,10 @@
 
 import React, {useEffect, useRef, useState} from 'react';
-import {MyButton} from "../../components/UI/MyButton/MyButton";
+import {MyButton} from "../UI/MyButton/MyButton";
 import {ADD__CART} from "../../features/actions";
 import {useCart} from "../../hooks/useCart";
 import {LIMIT_BOOKS_TO_CART} from "../../utils/consts";
-import FlyingBook from "../../components/FlyingBook/FlyingBook";
+import FlyingBook from "../FlyingBook/FlyingBook";
 
 const SpecificBookForm = ({book}) => {
 

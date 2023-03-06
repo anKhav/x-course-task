@@ -8,6 +8,7 @@ import BooksProvider from "./features/providers/BooksProvider";
 import UserProvider from "./features/providers/UserProvider";
 import CartProvider from "./features/providers/CartProvider";
 import Footer from "./layouts/Footer/Footer";
+import './variables.scss'
 import './common.scss'
 
 

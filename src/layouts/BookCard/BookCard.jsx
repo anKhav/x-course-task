@@ -4,15 +4,10 @@ import './BookCard.scss'
 import 'animate.css';
 import {MyButton} from "../../components/UI/MyButton/MyButton";
 import {useNavigate} from "react-router-dom";
-import {useContext} from "react";
-import {BooksContext} from "../../features/context/BooksContext";
-import {SpecificBookContext} from "../../features/context/SpecificBookContext";
-import {INITIAL__BOOKS} from "../../features/actions";
+
 
 const BookCard = ({id,author, price, img, title})  => {
     const navigate = useNavigate()
-
-    const { books } = useContext(BooksContext);
 
     const viewingBook = (e) => {
         e.preventDefault()

@@ -1,4 +1,4 @@
-@import 'src/common';
+@import '../../variables';
 
 .header{
   height: 70px;
@@ -15,13 +15,19 @@
     color: $main-text-color;
     text-decoration: none;
     font-weight: bold;
-    width: 40%;
   }
 }
 @media (max-width: 576px){
   .header{
     &__logo{
-      font-size: 22px;
+      font-size: 18px;
+    }
+  }
+}
+@media (max-width: 400px){
+  .header{
+    &__logo{
+      font-size: 16px;
     }
   }
 }

@@ -1,12 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {round} from "lodash";
 import DeleteBasketSvg from "../../components/UI/Icons/DeleteBasketSvg";
-import {CartContext} from "../../features/context/CartContext";
+
+import './BookInCart.scss'
+import {useCart} from "../../hooks/useCart";
 
 const BookInCart = ({book}) => {
-    const {cart:{data, totalPrice}, cartDispatch, setState} = useContext(CartContext)
-    const {cart:{totalAmount, error}} = useContext(CartContext);
+    const {cartDispatch, setState} = useCart()
+    const {cart:{totalAmount}} = useCart()
 
     const [isError, setIsError] = useState(false)
 
@@ -17,6 +19,7 @@ const BookInCart = ({book}) => {
             cartDispatch({type:'SET_ERROR', error:`You can buy only ${buyingLimit} pcs.`})
             setIsError(true)
         } else {
+            cartDispatch({type:'SET_ERROR', error:null})
             setIsError(false)
         }
     }, [totalAmount])
@@ -43,7 +46,6 @@ const BookInCart = ({book}) => {
 
     return (
         <div className='book'>
-            <div className="book__wrapper">
                 <Link className="book__name" to={`/book/${book.id}`}>
                     {book.title}
                 </Link>
@@ -57,10 +59,6 @@ const BookInCart = ({book}) => {
                 <button className='book__remove' onClick={removeHandler} data-id={book.id}>
                     <DeleteBasketSvg/>
                 </button>
-            </div>
-            {
-                isError && <div className='buying-limit'>{error}</div>
-            }
         </div>
     );
 };

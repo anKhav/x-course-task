@@ -1,6 +1,6 @@
 
 import './BurgerMenu.scss'
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import Nav from "../Nav/Nav";
 
 const BurgerMenu = () => {
@@ -8,7 +8,6 @@ const BurgerMenu = () => {
     const refButton = useRef(null)
 
     const [isOpen, setIsOpen] = useState(false)
-    const [isOpening, setIsOpening] = useState(false)
 
     const burgerMenuIsOpenClass = 'open'
 
@@ -20,7 +19,7 @@ const BurgerMenu = () => {
     }
 
     const closeMenu = (e) => {
-        if (e.target === ref.current || e.target === refButton.current || e.target.localName === 'img') {
+        if (e.target === ref.current || e.target === refButton.current || e.target.localName === 'svg') {
             setIsOpen(false)
         }
     }

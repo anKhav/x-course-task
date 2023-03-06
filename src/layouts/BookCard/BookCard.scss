@@ -1,4 +1,4 @@
-@import 'src/common';
+@import '../../variables';
 .book-card{
   text-align: left;
   display: flex;
@@ -57,7 +57,7 @@
 }
 @media (max-width: 768px){
   .book-card{
-    width: calc((100vw - 80px) / 2);
+    width: calc((100% - 80px) / 2);
     &:not(:nth-child(2n)) {
       margin-right: 20px;
     }
@@ -69,7 +69,7 @@
 
 @media (max-width: 576px){
   .book-card{
-    width: calc(100vw - 40px);
+    width: calc(100% - 40px);
     &:not(:nth-child(2n)) {
       margin-right: 20px;
     }

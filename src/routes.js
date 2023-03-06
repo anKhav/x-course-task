@@ -4,9 +4,9 @@ import {
 import Books from "./pages/Books/Books";
 import * as React from 'react';
 import Auth from "./pages/Auth/Auth";
-import SingleBook from "./pages/SingleBooks/SingleBook";
+import SpecificBook from "./pages/SpecificBook/SpecificBook";
 import Cart from "./pages/Cart/Cart";
-import NotFound from "./pages/NotFound";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 export const publicRoutes = [
     {
         path:LOGIN_ROUTE,
@@ -14,13 +14,17 @@ export const publicRoutes = [
     },
     {
         path: '*',
-        element: <NotFound/>
+        element: <NotFoundPage/>
     }
 ]
 export const privateRoutes = [
     {
+        path: '*',
+        element: <NotFoundPage/>
+    },
+    {
         path:BOOK_ROUTE,
-        element:<SingleBook/>
+        element:<SpecificBook/>
     },
     {
         path:CART_ROUTE,

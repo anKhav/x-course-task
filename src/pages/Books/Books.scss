@@ -1,12 +1,11 @@
-@import 'src/common';
+@import '../../variables';
 
 .books{
-  padding: 20px;
-
   &__header{
     display: flex;
     justify-content: space-between;
     align-content: center;
+    padding: 20px;
   }
 
   &__content{

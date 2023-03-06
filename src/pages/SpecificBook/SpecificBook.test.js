@@ -1,10 +1,10 @@
 import {fireEvent, render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CartProvider from "../../features/providers/CartProvider";
-import {MemoryRouter, Router} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
 import BooksProvider from "../../features/providers/BooksProvider";
 import {books} from './books'
-import SpecificBookForm from "./SpecificBookForm";
+import SpecificBookForm from "../../components/SpecificBookForm/SpecificBookForm";
 describe('Specific book form testing',
     () => {
         const dispatch = jest.fn();

@@ -5,13 +5,13 @@ import notFoundImg from '../../images/imageNotFound.png'
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {ThreeDots} from "react-loader-spinner";
-import SpecificBookForm from "./SpecificBookForm";
+import SpecificBookForm from "../../components/SpecificBookForm/SpecificBookForm";
 import {useBooks} from "../../hooks/useBooks";
 
-import './SingleBook.scss'
+import './SpecificBook.scss'
 
 
-const SingleBook = () => {
+const SpecificBook = () => {
 
 
     const {id} = useParams()
@@ -75,4 +75,4 @@ const SingleBook = () => {
     );
 };
 
-export default SingleBook;
+export default SpecificBook;

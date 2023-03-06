@@ -1,4 +1,4 @@
-@import 'src/common';
+@import '../../variables';
 
 .single-book{
   display: flex;
@@ -34,6 +34,8 @@
   &__description{
     width: 100%;
     margin-top: 30px;
+    font-weight: normal;
+    font-size: 16px;
   }
 
   &__content{
@@ -45,18 +47,27 @@
     width: 25%;
     height: 100%;
     margin-right: 20px;
+    font-weight: normal;
+    font-size: 16px;
   }
 
   &__title{
     margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
   }
 
   &__author{
     margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: italic;
   }
 
   &__level{
     margin-bottom: 25px;
+    font-weight: normal;
+    font-size: 16px;
   }
 
   &__tags{
@@ -167,19 +178,32 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.53);
       border-radius: 5px;
       margin-bottom: 30px;
+      font-size: 14px;
     }
     &__img{
-      width: 100%;
+      //width: 100%;
       margin-right: 0;
       margin-bottom: 30px;
       img {
         width: 100%;
       }
     }
+    &__title{
+      font-size: 18px;
+    }
+    &__author{
+      font-size: 16px;
+    }
+    &__description{
+      font-size: 14px;
+    }
   }
 }
-.buying-limit{
-  color: red;
-  align-self: flex-end;
-  margin-bottom: 20px;
+@media (max-width: 300px) {
+  .single-book{
+    height: 100%;
+    &__description{
+      font-size: 12px;
+    }
+  }
 }

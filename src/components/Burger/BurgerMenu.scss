@@ -1,4 +1,4 @@
-@import "src/common";
+@import "../../variables";
 
 .burger{
   &__menu{
@@ -135,6 +135,17 @@
   .burger{
     &__menu{
       width: 100vw;
+    }
+    &__button{
+      width: 25px;
+      div{
+        &::before{
+          top: 7px;
+        }
+        &::after{
+          bottom: 7px;
+        }
+      }
     }
   }
 }

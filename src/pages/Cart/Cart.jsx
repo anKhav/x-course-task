@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {MyButton} from "../../components/UI/MyButton/MyButton";
 
 import './Cart.scss'
@@ -9,7 +9,8 @@ import BookInCart from "../../layouts/BookInCart/BookInCart";
 import {useCart} from "../../hooks/useCart";
 
 const Cart = () => {
-    const {cart:{data, totalPrice}, cartDispatch} = useCart()
+    const {cart:{data, totalPrice, error}, cartDispatch} = useCart()
+    console.log(error);
 
     const [books, setBooks] = useState([])
 
@@ -53,6 +54,9 @@ const Cart = () => {
                                 })
                             }
                         </div>
+                        {
+                            error && <div className='buying-limit'>{error}</div>
+                        }
                         <div className="cart__footer">
                             <p className="cart__total-price">
                                 <span className='title'>Total price:</span>

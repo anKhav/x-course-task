@@ -2,16 +2,15 @@
 import {MyButton} from "../UI/MyButton/MyButton";
 import './Nav.scss'
 import {useNavigate} from "react-router-dom";
-import {UserContext} from "../../features/context/UserContext";
 import {CLEAR__CART, LOGOUT} from "../../features/actions";
-import {CartContext} from "../../features/context/CartContext";
-import {useContext} from "react";
 import CartIcon from "./CartIcon/CartIcon";
 import {INDEX_ROUTE} from "../../utils/consts";
+import {useCart} from "../../hooks/useCart";
+import {useUser} from "../../hooks/useUser";
 
 const Nav = () => {
-    const {user:{username}, userDispatch} = useContext(UserContext)
-    const {cartDispatch} = useContext(CartContext)
+    const {user:{username}, userDispatch} = useUser()
+    const {cartDispatch} = useCart()
 
     const navigate = useNavigate()
 
@@ -20,6 +19,7 @@ const Nav = () => {
         e.preventDefault()
         await userDispatch({type: LOGOUT})
         await cartDispatch({type:CLEAR__CART})
+        await localStorage.removeItem('books')
         navigate(INDEX_ROUTE)
     }
 

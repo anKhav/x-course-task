@@ -1,14 +1,13 @@
 
 import './Header.scss'
-import {useContext} from "react";
 import Nav from "../../components/Nav/Nav";
 import BurgerMenu from "../../components/Burger/BurgerMenu";
 import {Link} from "react-router-dom";
-import {UserContext} from "../../features/context/UserContext";
 import useWindowSize from "../../hooks/useWindowSize";
+import {useUser} from "../../hooks/useUser";
 
 const Header = ({title, authorName}) => {
-    const {user} = useContext(UserContext)
+    const {user} = useUser()
     const {innerWidth} = useWindowSize()
 
     return (
