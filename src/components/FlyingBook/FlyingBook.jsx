@@ -1,6 +1,6 @@
 
 import {useCart} from "../../hooks/useCart";
-import bookGif from '../../images/19-book-outline.gif'
+// import bookGif from '/19-book-outline.gif'
 
 import './flyingBook.scss'
 
@@ -26,7 +26,7 @@ const FlyingBook = ({click, button}) => {
     `
     return (
         <div className={click ? 'flying-book' : ' flying-book--none'} css={ click && css`animation: ${bounce} 1s linear infinite;`} >
-            <img src={bookGif} alt=""/>
+            <img src='/19-book-outline.gif' alt="flying-book"/>
         </div>
     );
 };
