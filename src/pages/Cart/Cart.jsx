@@ -10,7 +10,6 @@ import {useCart} from "../../hooks/useCart";
 
 const Cart = () => {
     const {cart:{data, totalPrice, error}, cartDispatch} = useCart()
-    console.log(error);
 
     const [books, setBooks] = useState([])
 

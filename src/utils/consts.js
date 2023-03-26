@@ -9,7 +9,7 @@ export const REGISTRATION_ROUTE = '/registration'
 export const CABINET = '/user'
 
 
-export const LIMIT_BOOKS_TO_CART = 120
+export const LIMIT_BOOKS_TO_CART = 42
 
 
 

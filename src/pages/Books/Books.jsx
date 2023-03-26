@@ -8,7 +8,7 @@ import {useEffect, useState} from "react"
 
 import './Books.scss'
 
-import {getBooks} from "../../services/booksService"
+import {getBooks} from "../../services/BooksService"
 import {reduceTitle} from "../../utils/reduceTitle"
 import {useBooks} from "../../hooks/useBooks";
 import {filterBooksByPrice} from "../../utils/filterBooks";

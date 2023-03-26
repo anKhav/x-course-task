@@ -9,7 +9,7 @@ import {useCart} from "../../hooks/useCart";
 import {useUser} from "../../hooks/useUser";
 
 const Nav = () => {
-    const {user:{username}, userDispatch} = useUser()
+    const {user, userDispatch} = useUser()
     const {cartDispatch} = useCart()
 
     const navigate = useNavigate()
@@ -30,8 +30,9 @@ const Nav = () => {
                 Sign-Out
             </MyButton>
             <div className="avatar">
+                <img src={user.avatar} alt={user.username}/>
             </div>
-            <span className='username'>{username}</span>
+            <span className='username'>{user.username}</span>
         </nav>
     );
 };

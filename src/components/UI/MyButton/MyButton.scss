@@ -19,7 +19,9 @@
 }
 .my-button[disabled]{
   cursor: not-allowed;
+  color: $main-text-color--light;
   background-color: lightgrey;
+  border-color: transparent;
   &:hover{
     background-color: lightgrey;
   }

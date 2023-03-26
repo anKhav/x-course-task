@@ -64,6 +64,18 @@
 .section-outer{
   height: 100%;
 }
+.socials-auth{
+  &__title{
+    font-size: 18px;
+    color: $main-text-color;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+}
 @media (max-width: 320px) {
   .auth{
     &__avatar{

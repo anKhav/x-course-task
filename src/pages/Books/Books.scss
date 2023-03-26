@@ -1,6 +1,7 @@
 @import '../../variables';
 
 .books{
+  width: calc(100vw - 40px);
   &__header{
     display: flex;
     justify-content: space-between;

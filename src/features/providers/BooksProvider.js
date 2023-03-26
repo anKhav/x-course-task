@@ -3,7 +3,7 @@ import { booksReducer} from "../reducers/BooksReducer";
 import {BooksContext} from "../context/BooksContext";
 import {fetchBooks, INITIAL__BOOKS} from "../actions";
 import {getUser} from "../../services/UserService";
-import {getStoragedBooks} from "../../services/booksService";
+import {getStoragedBooks} from "../../services/BooksService";
 
 const initialState = getStoragedBooks() || [];
 const BooksProvider = props => {

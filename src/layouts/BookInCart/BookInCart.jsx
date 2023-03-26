@@ -5,6 +5,7 @@ import DeleteBasketSvg from "../../components/UI/Icons/DeleteBasketSvg";
 
 import './BookInCart.scss'
 import {useCart} from "../../hooks/useCart";
+import {LIMIT_BOOKS_TO_CART} from "../../utils/consts";
 
 const BookInCart = ({book}) => {
     const {cartDispatch, setState} = useCart()
@@ -12,11 +13,9 @@ const BookInCart = ({book}) => {
 
     const [isError, setIsError] = useState(false)
 
-    const buyingLimit = 120
-
     useEffect(() => {
-        if (+totalAmount  >= buyingLimit){
-            cartDispatch({type:'SET_ERROR', error:`You can buy only ${buyingLimit} pcs.`})
+        if (+totalAmount  >= LIMIT_BOOKS_TO_CART){
+            cartDispatch({type:'SET_ERROR', error:`You can buy only ${LIMIT_BOOKS_TO_CART} pcs.`})
             setIsError(true)
         } else {
             cartDispatch({type:'SET_ERROR', error:null})
